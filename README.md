@@ -14,7 +14,7 @@ I also learned a fair a amount from running my own Linux servers and working wit
 few different Unixes (Solaris, FreeBSD) and doing more web programming.
 
 I graduated and moved to Seattle to come work for Amazon, and stayed there for a long time before
-moving to smaller startups, getting acqu-hired back to Amazon, moving to AWS, then to Piovtal Labs,
+moving to smaller startups, getting acqui-hired back to Amazon, moving to AWS, then to Piovtal Labs,
 and back to more startups.
 
 Now I work for Mechanical Orchard as an Infrastructure Engineer. We work on modernizing mainframes,
@@ -294,6 +294,210 @@ longer be in your path!
 ```bash
 rustc --version
 rustc 1.86.0 (05f9846f8 2025-03-31) (built from a source tarball)
+```
+
+# Let's build our app
+
+Now that we have our environment, we can build our app.
+
+```bash
+cd ~/workspace/nix-first-steps
+cargo new hello-nix
+cd hello-nix
+```
+
+We can keep this simple for now, but let's open up and change the default hello to say something
+a bit more specific.
+
+open up `hello-nix/src/main.rs` and change to the following:
+```rust
+fn main() {
+    println!("Hello from nix!");
+}
+```
+
+We can make sure this builds, tests, and runs.
+
+```bash
+$ cargo build
+   Compiling hello-nix v0.1.0 (/Users/scott/workspace/nix-first-steps/hello-nix)
+     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.77s
+ 
+$ cargo test
+   Compiling hello-nix v0.1.0 (/Users/scott/workspace/nix-first-steps/hello-nix)
+     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s
+       Running unittests src/main.rs (target/debug/deps/hello_nix-c7e1c6d541507f78)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo run
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/hello-nix`
+Hello from nix!
+```
+
+Let's make a new file, `default.nix` and put it in the `hello-nix` directory.
+
+```nix
+{ pkgs ? import <nixpkgs> { } }:
+pkgs.rustPlatform.buildRustPackage {
+  pname = "hello-nix";
+  version = "0.0.1";
+  cargoLock.lockFile = ./Cargo.lock;
+  src = pkgs.lib.cleanSource ./.;
+}
+```
+
+We have some new nix syntax, so let's get to learning what some of this is. Fire up that `nix repl`
+and let's get to work.
+
+```nix
+# The `?` allows us to have optional values in attribute sets. This comes in handy for optional 
+# arguments in functions.
+{ foo ? "foo" }: foo
+
+# you can either apply without that name set.
+({ foo ? "foo" }: foo) {}
+
+# or with it
+({ foo ? "foo" }: foo) { foo = "bar"; }
+
+# `import` is a special builtin function for loading code. 
+# `./filename` is path variable relative by current directory.
+# We can use this to import our new `default.nix` file
+import ./default.nix
+
+# <nixpkgs> is a special value that resolves lookup paths for $NIX_PATH
+# This can be used to dynamically load whichever location nix is set to 
+# That means that the argument to our function takes an attribute set with
+# an options pkgs that defaults to the imported version of `nixpkgs` if passed in.
+{ pkgs ? import <nixpkgs> { } }: {}
+
+# We use this `pkgs` to call a into a function that helps us build our rust app.
+# We set the package name and version, and then provide it our `./Cargo.lock` and 
+# current source of `./.`
+
+# Altogether, it's
+{ pkgs ? import <nixpkgs> { } }:
+pkgs.rustPlatform.buildRustPackage {
+  pname = "hello-nix";
+  version = "0.0.1";
+  cargoLock.lockFile = ./Cargo.lock;
+  src = pkgs.lib.cleanSource ./.;
+}
+```
+
+This altogether builds a package _derivation_. In order to use it to build our package,
+we can run the following:
+
+```bash
+nix build -f default.nix
+```
+
+When it finishes, we can see the `result` of the derivation symlinked in your current directory.
+The derivation gets saved in our nix store. When we're done, we can delete this symlink.
+
+```bash
+$ ls -la result
+lrwxr-xr-x 1 scott staff 59 Jun 29 17:26 result -> /nix/store/rj2wf0vgsgbsadlad6nxssnb4lhqvjw1-hello-nix-0.0.1
+$ ./result/bin/hello-nix
+Hello from nix!
+$ rm result
+```
+
+Now that we have a package, we want to add it to our flake for our repo. Going back up to the top
+level directory, we can add this to our flake.
+
+```bash
+      {
+        devShell = pkgs.mkShell {
+         # ...
+        };
+        packages.default = pkgs.callPackage ./hello-nix {}
+      }
+```
+
+We're provided a `default` package here and are using the built-in of `callPackage` to derive the
+package for our current `system`. Note that we don't have to use the full `./hello-nix/default.nix`
+path here since nix will look for a `default.nix` for a directory.
+
+We can now build our package from our flake with
+
+```bash
+nix build .#
+```
+
+Here `.` means "the current source tree flake" and `#` points to the name, which we've left empty.
+It looks for `default` when not provided, but if we named both we could provide them.
+
+But this will error!
+
+We get a fairly long and ugly error message
+```bash
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+error:
+       … while evaluating a branch condition
+         at «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4?narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/customisation.nix:305:5:
+          304|     in
+          305|     if missingArgs == { } then
+             |     ^
+          306|       makeOverridable f allArgs
+
+       … while calling the 'removeAttrs' builtin
+         at «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4?narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/attrsets.nix:657:28:
+          656|   */
+          657|   filterAttrs = pred: set: removeAttrs set (filter (name: !pred name set.${name}) (attrNames set));
+             |                            ^
+          658|
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: Path 'hello-nix' in the repository "/Users/scott/workspace/nix-first-steps" is not tracked by Git.
+
+       To make it visible to Nix, run:
+
+       git -C "/Users/scott/workspace/nix-first-steps" add "hello-nix"
+```
+
+Because this flake sees a git repository, it wants to ensure any files reference have been added to
+git. Doing so will fix our build. We do also want add a few things to our `.gitignore` first.
+
+```bash
+echo "target" >> .gitignore
+echo ".direnv" >> .gitignore
+git add "hello-nix"
+```
+
+Now our build should work. Similar to before, we have a result symlink.
+
+```bash
+$ nix build .#
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+$ ls -l result
+lrwxr-xr-x 1 scott staff 59 Jun 29 17:45 result -> /nix/store/yqw9zry7dsgyr692y18pb330xhwlrwr5-hello-nix-0.0.1
+$ ./result/bin/hello-nix
+Hello from nix!
+$ rm result
+```
+
+You'll note this is may be a _slightly_ different hash prefix as before. While before we were
+building against a default `nixpkgs`, here our flake has a very specific pinned version. This means
+our two derivations are actually different.
+
+We can also run our new package
+```bash
+$ nix run .#
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+Hello from nix!
+```
+
+If we were to share this repo, we could even run it without having to check out the code!
+
+```bash
+$ nix run github:sentientmonkey/nix-first-steps
+Hello from nix!
 ```
 
 
