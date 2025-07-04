@@ -454,7 +454,7 @@ error:
 
        (stack trace truncated; use '--show-trace' to show the full, detailed trace)
 
-       error: Path 'hello-nix' in the repository "/Users/scott/workspace/nix-first-steps" is not tracked by Git.
+        error: Path 'hello-nix' in the repository "/Users/scott/workspace/nix-first-steps" is not tracked by Git.
 
        To make it visible to Nix, run:
 
@@ -500,4 +500,58 @@ $ nix run github:sentientmonkey/nix-first-steps
 Hello from nix!
 ```
 
+# Let's build for docker
+
+Now we'd like to make sure we can build this into a docker image from nix.
+
+*Note*: for the steps below, this only works on linux, and not macOS.
+
+First, we'll want to make a new file to help build our docker image.
+
+Create a new file `hello-nix/build-docker.nix`
+```nix
+{ 
+  pkgs ? import <nixpkgs> { }
+}:
+
+pkgs.dockerTools.buildImage {
+  name = "hello-nix";
+  tag = "latest";
+  config = {
+    Cmd = [ "${pkgs.hello}/bin/hello" ];
+  };
+}
+```
+
+This is is a basic docker file that runs a the `hello` package. We can build this to test it out, 
+and then use it to load and run in docker.
+
+```bash
+docker load < $(nix build -f hello-nix/build-docker.nix --no-link --print-out-paths)
+docker run hello-nix
+```
+
+Note that we're using `--no-link` to avoid making the `result` symblink and `--print-out-paths` to
+print the resulting OCI image tarball. This is loaded directly into docker and can be run, or 
+pushed to any registry.
+
+Now that we have an example working, let's add in _our_ nix package.
+
+Back in our `flake.nix`, first we can add in this to make a new package.
+
+```nix
+        packages.default = pkgs.callPackage ./hello-nix {}
+        packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix {}
+```
+
+This lets us build the dockerImage (as a package) first. We can test this with using the flake 
+version of our build config. Don't forget to `git add` your new file!
+
+```bash
+git add hello-nix/build-docker.nix
+docker load $(nix build .#dockerImage --no-link --print-out-paths)
+docker run hello-nix
+```
+
+Now, we want to use our build nix package. Let's do a small refactor first to extract or
 
