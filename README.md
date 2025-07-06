@@ -903,3 +903,17 @@ $ docker run -it /bin/bash
 |_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)
 
 ```
+
+# Wrapping up - takeaways and jumping off points
+
+Now that you've gotten a quick tour of how nix can be helpful in building out your dev
+environments, I encourage you to explore and learn more. Some jumping off points:
+
+* [devenv](https://devenv.sh/) for pinning languages and adding services (i.e. postgres, redis)
+* [dockertools](https://ryantm.github.io/nixpkgs/builders/images/dockertools/)  for building containers with nix
+* [flakes](https://nixos.wiki/wiki/flakes) for more details about building flakes
+* [nix create and debug packages](https://nixos.wiki/wiki/Nixpkgs/Create_and_debug_packages) to help build your own packages
+* [search.nixos.org](https://search.nixos.org/packages) to explore packages
+* [zero to nix](https://zero-to-nix.com/) to learn more about nix
+
+I hope this inspires you to learn more and experiment!
