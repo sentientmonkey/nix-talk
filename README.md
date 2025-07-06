@@ -1,5 +1,6 @@
 # Nix talk
 Scott Windsor
+
 DevOps PDX
 
 # Goals for talk & expectations
@@ -26,7 +27,7 @@ I also learned a fair a amount from running my own Linux servers and working wit
 few different Unixes (Solaris, FreeBSD) and doing more web programming.
 
 I graduated and moved to Seattle to come work for Amazon, and stayed there for a long time before
-moving to smaller startups, getting acqui-hired back to Amazon, moving to AWS, then to Piovtal Labs,
+moving to smaller startups, getting acqui-hired back to Amazon, moving to AWS, then to Pivotal Labs,
 and back to more startups.
 
 Now I work for Mechanical Orchard as an Infrastructure Engineer. We work on modernizing mainframes,
@@ -68,7 +69,7 @@ Nix can help here, and just enough to get started.
 How does nix handle this differently? First off, nix is a _purely functional_ package manager. This
 means that when a package is built it has no side effects and does not change after being built.
 
-Nix saves this packages in a _nix store_, typically in `/nix/store` with content addressable store.
+Nix saves these packages in a _nix store_, typically in `/nix/store` with content addressable store.
 Nix not only allows you to store multiple versions of a package, but also multiple _derivations_ of
 a package, meaning that you can have different configurations of a package and it's dependencies.
 
@@ -85,7 +86,7 @@ This is quite difficult to do with other package managers - just think about iss
 of `openssl` or `libxml` when building different applications.
 
 For an example, let's use the `nix-shell` command to open up a new bash shell with `curl`
-installed. (Note this example is running on linux).
+installed. (Note this example is running on Linux).
 
 ```bash
 $ nix-shell -p curl
