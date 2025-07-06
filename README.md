@@ -138,6 +138,29 @@ exit
 
 ```
 
+Note that this is slightly different when running on macOS (using `otool` instead of `ldd`).
+
+```bash
+[nix-shell:~]$ otool -L $(which curl)
+/nix/store/bblr8ccnd4baxm4cf7g1igfz6ya8v93m-curl-8.14.1-bin/bin/curl:
+        /nix/store/6l3i3d58xr1r4qv49v1ln8wf309sb15x-curl-8.14.1/lib/libcurl.4.dylib (compatibility version 13.0.0, current version 13.0.0)
+        /nix/store/jkdx2fgyj2lhma8xydrp6xkqgv13a00g-nghttp2-1.65.0-lib/lib/libnghttp2.14.dylib (compatibility version 43.0.0, current version 43.4.0)
+        /nix/store/8jfck34h4ayxg41lylz1aayjjjmy2qhw-libidn2-2.3.8/lib/libidn2.0.dylib (compatibility version 5.0.0, current version 5.0.0)
+        /nix/store/4kk9xgcdga33k9h371p81svlam1aqa07-libssh2-1.11.1/lib/libssh2.1.dylib (compatibility version 2.0.0, current version 2.1.0)
+        /nix/store/lvg9zfb2ig76821dmmpcdlb9xd6md1g5-libpsl-0.21.5/lib/libpsl.5.dylib (compatibility version 9.0.0, current version 9.5.0)
+        /nix/store/7fqm5r0kdy21fdblcl1x4zm63wl12bjj-openssl-3.4.1/lib/libssl.3.dylib (compatibility version 3.0.0, current version 3.0.0)
+        /nix/store/7fqm5r0kdy21fdblcl1x4zm63wl12bjj-openssl-3.4.1/lib/libcrypto.3.dylib (compatibility version 3.0.0, current version 3.0.0)
+        /nix/store/xvrbzp3i5s00paykwcrf032bnddvf4fa-krb5-1.21.3-lib/lib/libgssapi_krb5.2.2.dylib (compatibility version 2.0.0, current version 2.2.0)
+        /nix/store/ml7rlz2qfk7dpkg02af2gx7x97wzckcg-libresolv-83/lib/libresolv.9.dylib (compatibility version 1.0.0, current version 1.0.0)
+        /nix/store/jy938j9d6pnrwwbs3s16mrxnsikj564k-zstd-1.5.7/lib/libzstd.1.5.7.dylib (compatibility version 1.0.0, current version 1.5.7)
+        /nix/store/0xc8g1l0wxzipdfwqpj5ax5nzjj751b1-brotli-1.1.0-lib/lib/libbrotlidec.1.dylib (compatibility version 1.0.0, current version 1.1.0)
+        /nix/store/fr590df7m2v4521ybwa4k8hddwprf01y-zlib-1.3.1/lib/libz.dylib (compatibility version 1.0.0, current version 1.3.1)
+        /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration (compatibility version 1.0.0, current version 1109.101.1)
+        /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices (compatibility version 1.0.0, current version 1122.33.0)
+        /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 1775.118.101)
+        /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1292.100.5)
+```
+
 We can see all of the shared objects here all point to items in our nix store. In addition, nix was
 able to download most of these from `https://cache.nixos.org` rather than rebuilding locally.
 
