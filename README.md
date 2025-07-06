@@ -2,6 +2,18 @@
 Scott Windsor
 DevOps PDX
 
+# Goals for talk & expectations
+
+The goal for this talk is to introduce you to how nix can be helpful in solving the problem of
+providing _reproducible_ and _portable_ development environments. It's meant to be an approachable
+for those unfamiliar with nix, but have a basic understanding of Unix systems and a comfort with
+working with the command-line and shell. A knowledge of programming language will help with the
+nix language portions - something like `javascript`, `ruby`, or `python` would be helpful given
+the expression language, but isn't specifically required. I introduce just enough of the language
+and understanding of nix to get through the setup here, but there's far more than I don't cover
+here. All of the code & command-line examples given should work on any Unix capable of running
+nix, but has only been tested on macOS and NixOS (Linux).
+
 # Background
 
 I started with computers at an early age with Apple ii, then moved on to IBM DOS machines. Eventually
