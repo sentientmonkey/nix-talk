@@ -301,20 +301,55 @@ a: b: a + b
 # the nested attribute set of `utils.lib`, which sends the argument of a
 # function that takes `system` as an argument and returns an attribute set!
 
-{ outputs = { self, nixpkgs, utils }: utils.lib.eachDefaultSystem (system: {})};
+{
+  outputs =
+    {
+      self,
+      nixpkgs,
+      utils,
+    }:
+    utils.lib.eachDefaultSystem (system: { });
+}
 
-# Let's look into the actuall contents of that function call a bit more
+# Let's look into the actual contents of that function call a bit more
 
 # `let` blocks allow you to assign values you can use inside an `in` block
-let a = 10; in { x = a; }
+let
+  a = 10;
+in
+{
+  x = a;
+}
 
 # Sometimes you might want to refer to interpolated values for attribute keys
 # We can use `${}` for this
-let a = "x"; in { ${a} = 10; }
+let
+  a = "x";
+in
+{
+  ${a} = 10;
+}
 
 # Additionally, assigning a value to it's name is so common that there's a shorthand with `inherit`
-let a = 10; b = 12: c = 5; in { a = a; b = b; c = c; }
-let a = 10; b = 12: c = 5; in { inherit a b c; }
+let
+  a = 10;
+  b = 12;
+  c = 5;
+in
+{
+  a = a;
+  b = b;
+  c = c;
+}
+
+let
+  a = 10;
+  b = 12;
+  c = 5;
+in
+{
+  inherit a b c;
+}
 
 # This is how `${system}` being used in our flake. Here's smaller example that applies both
 # functions.
