@@ -881,11 +881,7 @@ pkgs.rustPlatform.buildRustPackage {
   nativeBuildInputs = [ pkgs.makeWrapper ];
 
   postInstall = ''
-    # Move the original binary to a new location
-    mv $out/bin/hello-nix $out/bin/.hello-nix-unwrapped
-
-    # Create a wrapper script
-    makeWrapper $out/bin/.hello-nix-unwrapped $out/bin/hello-nix \
+    wrapProgram $out/bin/hello-nix \
       --prefix PATH : ${pkgs.lolcat}/bin \
       --prefix PATH : ${pkgs.figlet}/bin \
       --add-flags "| figlet | lolcat"
@@ -938,6 +934,13 @@ $ docker run -it /bin/bash
 |  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |>  <|_|
 |_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)
 
+```
+
+You can even run the `unwrapped` version
+
+```bash
+$ docker run -it hello-nix:0.0.1 /bin/.hello-nix-wrapped
+Hello from nix!
 ```
 
 # Wrapping up - takeaways and jumping off points
