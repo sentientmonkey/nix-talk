@@ -1,6 +1,6 @@
 # Synopsis
 
-Keeping a stable development environment with all the dependencies (languages, libraries, tools) can be difficult. Nix (and NixOS) were specifically designed to solve the problem of reproducible builds in a declarative way, but in a very different way. This talk introduces you to "just enough nix" to build a dev environment that's portable but also allows you to re-distribute what you've build as a package and even docker container - all built with nix! We'll see how taking a head-first approach makes it easier to learn and gets you a single set of tooling for development, testing, & distribution.
+Keeping a stable development environment with all the dependencies (languages, libraries, tools) can be difficult. Nix (and NixOS) were specifically designed to solve the problem of reproducible builds in a declarative way, but in a very different way. This talk introduces you to "just enough nix" to build a dev environment that's portable and also allows you to re-distribute what you've build as a package and even docker container - all built with nix! We'll see how jumping into a hands-on approach makes it easier to learn and gets you a single set of tooling for development, testing, & distribution.
  
 # Bio
 
