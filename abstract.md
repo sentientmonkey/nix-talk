@@ -4,5 +4,4 @@ Keeping a stable development environment with all the dependencies (languages, l
  
 # Bio
 
-Scott Windsor is a software engineer who lives in Portland, OR. He's been an engineer for over 20 years and has found himself regularly "running towards the danger" when it comes to systems engineering and devops. He's currently working at Mechanical Orchard on the Infrastructure team using all his skills to help teams modernize mainframes.
-
+Scott Windsor (he/him) is a software engineer who lives in Portland, OR. He's been an engineer for over 20 years and has found himself regularly "running towards the danger" when it comes to systems engineering and devops. He's currently working at Mechanical Orchard on the Infrastructure team using all his skills to help teams modernize mainframes.
