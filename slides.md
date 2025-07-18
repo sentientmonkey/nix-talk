@@ -1,5 +1,5 @@
 ---
-title: "Nix Talk"
+title: "Let's go Nix"
 author: "Scott Windsor"
 institute: "Devops PDX"
 topic: "Nix"
@@ -8,11 +8,14 @@ colortheme: "beaver"
 fonttheme: "professionalfonts"
 mainfont: "Hack Nerd Font"
 fontsize: 12pt
-urlcolor: aqua
+urlcolor: blue
 linkstyle: bold
 aspectratio: 169
-#titlegraphic: img/aleph0.png
-#logo: img/aleph0-small.png
+titlegraphic: img/nix-snowflake-rainbow.png
+title-slide-attributes:
+    data-background-image: /img/nix-snowflake-rainbow.png
+    data-background-size: contain
+#logo: img/nix-snowflake-rainbow.png
 date:
 lang: en-US
 section-titles: false
@@ -26,6 +29,7 @@ toc: true
 - Introduce concepts and language
 - Get you excited about nix!
 
+
 ## Expectations
 - Familiarity with command line & shell
 - Understand at least one programming language like `javascript`
@@ -33,9 +37,40 @@ toc: true
 
 # Background
 
+* Been a developer for > 20 years
+* Dealt with countless build/run dependency issues
+* Have worked heavily with modernizing legacy systems
+* Usually work in small agile teams
+
 # The Quest for Reproducible Development Environments
+
+* automake (and porting)
+* ports / macports
+* anisible
+* chef
+* puppet
+* Language managers: (rvm, virtualenv, nvm)
+* Docker
+
+# But they always fall short
+
+* System architecture woes (again!)
+* Personal machine drift
+* Working with multiple projects across teams
+
+# How Nix is different
+
+* Saves packages in isolation - `/nix/store`
+* Builds packages with a functional language
+* Allows you to link to system, user, or shell environments these packages
+
+# First steps - installing
+
+```bash
+$ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
+```
  
-# How nix is different
+# Creating shell with curl
  
 ```bash
 $ nix-shell -p curl
@@ -60,7 +95,7 @@ copying path '/nix/store/9pn6y4zlszr9w26rg2h52l3sd0wvzjvd-nghttp2-1.65.0-dev' fr
 copying path '/nix/store/wznrhnlrvamvihizpnizjfh5hs55z98n-curl-8.14.1-dev' from 'https://cache.nixos.org'...
 ```
 
-# How nix is different
+# Creating shell with curl
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ curl --version
@@ -73,7 +108,7 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
 /nix/store/wq4mwdypl1wmlhyrr69wggv8jdn2h9j9-curl-8.14.1-bin/bin/curl
 ```
 
-# How nix is different
+# Showing runtime dependencies (Linux)
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ ldd $(which curl)
@@ -104,15 +139,7 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
         /nix/store/q4wq65gl3r8fy746v9bbwgx4gzn0r2kl-glibc-2.40-66/lib/ld-linux-x86-64.so.2 => /nix/store/q4wq65gl3r8fy746v9bbwgx4gzn0r2kl-glibc-2.40-66/lib64/ld-linux-x86-64.so.2 (0x00007f0e95cfc000)
 ```
 
-
-# How nix is different
-
-```bash
-[nix-shell:~/workspace/nix-talk]$ exit 
-exit
-```
-
-# How nix is different
+# Showing runtime dependencies (macOS)
 
 ```bash
 [nix-shell:~]$ otool -L $(which curl)
@@ -135,10 +162,11 @@ exit
         /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1292.100.5)
 ```
 
-# First steps - installing
+# How nix is different
 
 ```bash
-$ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
+[nix-shell:~/workspace/nix-talk]$ exit 
+exit
 ```
 
 # Your first environment
@@ -151,7 +179,6 @@ $ nix flake init templates#utils-generic
 ```
 
 # Your first environment
-
 `flake.nix`:
 
 
@@ -193,6 +220,7 @@ use flake
 
 ```nix
 # This is a string
+
 "foo"
 ```
 
@@ -200,6 +228,7 @@ use flake
 
 ```nix
 # This is a multi-line string
+
 ''I'm a mult-line
 string
 ''
@@ -209,6 +238,7 @@ string
 
 ```nix
 # This is a number
+
 5
 ```
 
@@ -216,13 +246,15 @@ string
 
 ```nix
 # This is a list of numbers and strings
+
 [ 1 2 "foo" ]
 ```
 
 # Nix the language
 
 ```nix
-# This is an empty "attribute set", which is also like a dictory or hash in other languages.
+# This is an empty "attribute set", which is also like a dictionary or hash in other languages.
+
 {}
 ```
 
@@ -230,6 +262,7 @@ string
 
 ```nix
 # attribute sets can assign attributes
+
 {
   foo = "bar";
   baz = "buzz";
@@ -240,6 +273,7 @@ string
 
 ```nix
 # You can make nested attribute sets
+
 {
   foo = {
     bar = "baz";
@@ -251,6 +285,7 @@ string
 
 ```nix
 # Or assign them with a "." for shorthand
+
 { foo.bar = "baz"; }
 ```
 
@@ -258,6 +293,7 @@ string
 
 ```nix
 # This is our inputs example
+
 {
   inputs = {
     utils.url = "github:numtide/flake-utils";
@@ -268,14 +304,16 @@ string
 # Nix the language
 
 ```nix
-# a `:` denoates a function with arguments on left and function body on the right
+# a `:` denotes a function with arguments on left and function body on the right
+
 x: x + 1
 ```
 
 # Nix the language
 
 ```nix
-# You can call a function by applying an argument, but you may need to wrap in parentheis
+# You can call a function by applying an argument, but you may need to wrap in parenthesis
+
 (x: x + 1) 2
 ```
 
@@ -283,6 +321,7 @@ x: x + 1
 
 ```nix
 # Most of the time you will see attributes as the function arguments
+
 { a, b }: a + b
 ```
 
@@ -290,6 +329,7 @@ x: x + 1
 
 ```nix
 # When calling this you pass an attribute set
+
 ({ a, b }: a + b) {
   a = 2;
   b = 3;
@@ -300,27 +340,31 @@ x: x + 1
 
 ```nix
 # Functions can also be `curried`
+
 a: b: a + b
 ```
 
 # Nix the language
 
 ```nix
-# Again, using parenthsis to apply
+# Again, using parenthesis to apply
+
 (a: b: a + b) 2 3
 ```
 
 # Nix the language
 
 ```nix
-# Again, using parenthsis to apply
+# Again, using parenthesis to apply
+
 (a: b: a + b) 2 3
 ```
 
 # Nix the language
 
 ```nix
-# Now we can undertand the output line a bit better (omitting the `system` body for now)...
+# Now we can understand the output line a bit better (omitting the `system` body for now)...
+
 {
   outputs =
     {
@@ -336,6 +380,7 @@ a: b: a + b
 
 ```nix
 # `let` blocks allow you to assign values you can use inside an `in` block
+
 let
   a = 10;
 in
@@ -349,6 +394,7 @@ in
 ```nix
 # Sometimes you might want to refer to interpolated values for attribute keys
 # We can use `${}` for this
+
 let
   a = "x";
 in
@@ -360,7 +406,8 @@ in
 # Nix the language
 
 ```nix
-# Additionally, assigning a value to it's name is so common that there's a shorthand with `inherit`
+# Assigning a value to it's name is so common that there's a shorthand with `inherit`
+
 let
   a = 10;
   b = 12;
@@ -376,7 +423,8 @@ in
 # Nix the language
 
 ```nix
-# Additionally, assigning a value to it's name is so common that there's a shorthand with `inherit`
+# Assigning a value to it's name is so common that there's a shorthand with `inherit`
+
 let
   a = 10;
   b = 12;
@@ -393,6 +441,7 @@ in
 ```nix
 # This is how `${system}` being used in our flake. Here's smaller example that applies both
 # functions.
+
 (
   system:
   { nixpkgs }:
@@ -416,6 +465,7 @@ in
 
 ```nix
 # Sometimes repeating keys can get a bit cumbersome
+
 let
   x = {
     a = 1;
@@ -433,7 +483,8 @@ in
 # Nix the language
 
 ```nix
-# We can use `with` to automaticly scope all of the attributes in x
+# We can use `with` to automatically scope all of the attributes in x
+
 let
   x = {
     a = 1;
@@ -455,3 +506,554 @@ with x;
 # You did it! Great job!
 ```
 
+# Updating our flake
+
+`flake.nix`:
+
+
+```nix
+{
+  inputs = {
+    utils.url = "github:numtide/flake-utils";
+  };
+  outputs = { self, nixpkgs, utils }: utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShell = pkgs.mkShell {
+        buildInputs = with pkgs; [
+        ];
+      };
+    }
+  );
+}
+```
+
+# Moving nixpkgs to stable
+
+We add an input for nixpkgs to `25.05` (overriding default)
+
+```nix
+inputs = {
+  nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+  utils.url = "github:numtide/flake-utils";
+};
+```
+
+# Adding packages to our devShell
+
+These are for our rust app, but you can find more at [search.nixos.org](https://search.nixos.org)
+
+```nix
+devShell = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          cargo
+          rustc
+          rust-analyzer
+          rustfmt
+        ];
+      };
+    }
+```
+
+# Enter the devShell
+
+We can use `nix develop` to get to the shell. `.#` is a reference to the current flake.
+
+```bash
+$ nix develop .#
+(nix:nix-shell-env) bash-5.2$ rustc --version
+rustc 1.86.0 (05f9846f8 2025-03-31) (built from a source tarball)
+(nix:nix-shell-env) bash-5.2$ cargo --version
+cargo 1.86.0 (adf9b6ad1 2025-02-28)
+(nix:nix-shell-env) bash-5.2$ exit
+exit
+```
+
+# direnv makes this better
+
+If you don't already have direnv installed, you can install to your profile via nix.
+
+```bash
+$ nix profile install nixpkgs#direnv
+$ echo 'eval "$(direnv hook zsh)"' >> ~/.bashrc
+$ source ~/.bashrc
+```
+
+# direnv makes this better
+
+Now the flake is evaluated when we enter the directory
+
+$ direnv allow
+```bash
+direnv: loading ~/workspace/nix-first-steps/.envrc
+direnv: using flake
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+direnv: export +AR +AS +CC +CONFIG_SHELL +CXX +DEVELOPER_DIR +HOST_PATH +IN_NIX_SHELL +LD +LD_DYLD_PATH +MACOSX_DEPLOYMENT_TARGET +NIX_APPLE_SDK_VERSION +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_BUILD_CORES +NIX_BUILD_TOP +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_CFLAGS_COMPILE +NIX_DONT_SET_RPATH +NIX_DONT_SET_RPATH_FOR_BUILD +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_IGNORE_LD_THROUGH_GCC +NIX_LDFLAGS +NIX_NO_SELF_RPATH +NIX_STORE +NM +OBJCOPY +OBJDUMP +PATH_LOCALE +RANLIB +SDKROOT +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +TEMP +TEMPDIR +TMP +ZERO_AR_DATE +__darwinAllowLocalNetworking +__impureHostDeps +__propagatedImpureHostDeps +__propagatedSandboxProfile +__sandboxProfile +__structuredAttrs +buildInputs +buildPhase +builder +cmakeFlags +configureFlags +depsBuildBuild +depsBuildBuildPropagated +depsBuildTarget +depsBuildTargetPropagated +depsHostHost +depsHostHostPropagated +depsTargetTarget +depsTargetTargetPropagated +doCheck +doInstallCheck +dontAddDisableDepTrack +mesonFlags +name +nativeBuildInputs +out +outputs +patches +phases +preferLocalBuild +propagatedBuildInputs +propagatedNativeBuildInputs +shell +shellHook +stdenv +strictDeps +system ~PATH ~TMPDIR ~XDG_DATA_DIRS
+```
+
+# direnv makes this better
+
+Now our packages are just in our path!
+
+```bash
+$ rustc --version
+rustc 1.86.0 (05f9846f8 2025-03-31) (built from a source tarball)
+```
+
+# Buliding our app
+
+Now that we have our environment, we can build our app.
+
+```bash
+$ cd ~/workspace/nix-first-steps
+$ cargo new hello-nix
+$ cd hello-nix
+```
+
+# Buliding our app
+
+open up `hello-nix/src/main.rs` and change to the following:
+```rust
+fn main() {
+    println!("Hello from nix!");
+}
+```
+
+# Buliding our app
+
+We can make sure this builds, tests, and runs.
+
+```bash
+$ cargo build
+   Compiling hello-nix v0.1.0 (/Users/scott/workspace/nix-first-steps/hello-nix)
+     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.77s
+
+$ cargo test
+   Compiling hello-nix v0.1.0 (/Users/scott/workspace/nix-first-steps/hello-nix)
+     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.11s
+       Running unittests src/main.rs (target/debug/deps/hello_nix-c7e1c6d541507f78)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo run
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/hello-nix`
+Hello from nix!
+```
+
+# Building with nix
+
+Let's make a new file, `default.nix` and put it in the `hello-nix` directory.
+
+```nix
+{ pkgs ? import <nixpkgs> { } }:
+pkgs.rustPlatform.buildRustPackage {
+  pname = "hello-nix";
+  version = "0.0.1";
+  cargoLock.lockFile = ./Cargo.lock;
+  src = pkgs.lib.cleanSource ./.;
+}
+```
+# New syntax for nix
+
+```nix
+# The `?` allows us to have optional values in attribute sets. This comes in handy for optional
+# arguments in functions.
+
+{ foo ? "foo" }: foo
+```
+
+# New syntax for nix
+
+```nix
+# you can either apply without that name set.
+
+({ foo ? "foo" }: foo) {}
+```
+
+# New syntax for nix
+
+```nix
+# or with it
+
+({ foo ? "foo" }: foo) { foo = "bar"; }
+```
+
+# New syntax for nix
+
+```nix
+# `import` is a special builtin function for loading code.
+# `./filename` is path variable relative by current directory.
+# We can use this to import our new `default.nix` file
+
+import ./default.nix
+```
+
+# New syntax for nix
+
+```nix
+# <nixpkgs> is a special value that resolves lookup paths for $NIX_PATH
+# This can be used to dynamically load whichever location nix is set to
+# That means that the argument to our function takes an attribute set with
+# an options pkgs that defaults to the imported version of `nixpkgs` if passed in.
+
+{ pkgs ? import <nixpkgs> { } }: {}
+```
+
+# New syntax for nix
+
+back to our `default.nix`
+ 
+```nix
+{ pkgs ? import <nixpkgs> { } }:
+pkgs.rustPlatform.buildRustPackage {
+  pname = "hello-nix";
+  version = "0.0.1";
+  cargoLock.lockFile = ./Cargo.lock;
+  src = pkgs.lib.cleanSource ./.;
+}
+```
+
+# Building our package
+
+We can use the `nix build` command to build
+
+```bash
+$ nix build -f default.nix
+```
+
+# Building our package
+
+And see the results...
+
+```bash
+$ ls -la result
+lrwxr-xr-x 1 scott staff 59 Jun 29 17:26 result -> /nix/store/rj2wf0vgsgbsadlad6nxssnb4lhqvjw1-hello-nix-0.0.1
+$ ./result/bin/hello-nix
+Hello from nix!
+$ rm result
+```
+
+# Adding package to our flake
+
+back up to our `flake.nix`, we provide this as the `default` package
+```bash
+{
+  devShell = pkgs.mkShell {
+    # ...
+  };
+  packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; }
+}
+```
+
+# Adding package to our flake
+
+and rebuild it! Note the syntax again of `.#`
+
+```bash
+$ nix build .#
+```
+
+# Error with build
+
+```bash
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+error:
+ … while evaluating a branch condition
+   at «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4?narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/customisation.nix:305:5:
+    304|     in
+    305|     if missingArgs == { } then
+       |     ^
+    306|       makeOverridable f allArgs
+
+ … while calling the 'removeAttrs' builtin
+   at «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4?narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/attrsets.nix:657:28:
+    656|   */
+    657|   filterAttrs = pred: set: removeAttrs set (filter (name: !pred name set.${name}) (attrNames set));
+       |                            ^
+    658|
+
+ (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+  error: Path 'hello-nix' in the repository "/Users/scott/workspace/nix-first-steps" is not tracked by Git.
+
+ To make it visible to Nix, run:
+
+ git -C "/Users/scott/workspace/nix-first-steps" add "hello-nix"
+```
+
+# Cleaning up git
+
+```bash
+$ echo "target" >> .gitignore
+$ echo ".direnv" >> .gitignore
+$ git add "hello-nix"
+```
+
+# Build success
+
+```bash
+$ nix build .#
+warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
+$ ls -l result
+lrwxr-xr-x 1 scott staff 59 Jun 29 17:45 result -> /nix/store/yqw9zry7dsgyr692y18pb330xhwlrwr5-hello-nix-0.0.1
+$ ./result/bin/hello-nix
+Hello from nix!
+$ rm result
+```
+
+# Portability of package
+
+If we push this to github we could run this automatically!
+
+```bash
+$ nix run github:sentientmonkey/nix-first-steps
+Hello from nix!
+```
+
+# Let's Build for Docker
+
+Create a new file `hello-nix/build-docker.nix`
+
+```nix
+{
+  pkgs ? import <nixpkgs> { }
+}:
+
+pkgs.dockerTools.buildImage {
+  name = "hello-nix";
+  tag = "0.0.1";
+  config = {
+    Cmd = [ "${pkgs.hello}/bin/hello" ];
+  };
+}
+```
+
+# Building and loading
+
+```nix
+$ docker load < $(nix build -f hello-nix/build-docker.nix --no-link --print-out-paths)
+Loaded image: hello-nix:0.0.1
+$ docker run hello-nix:0.0.1
+Hello, World!
+```
+
+# Adding dockerImage to our flake
+
+add to our top level `flake.nix`
+```nix
+packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; }
+packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs; }
+```
+
+# Run docker build with flake
+
+```bash
+$ git add hello-nix/build-docker.nix
+$ docker load $(nix build .#dockerImage --no-link --print-out-paths)
+Loaded image: hello-nix:0.0.1
+$ docker run hello-nix:0.0.1
+Hello, World!
+```
+
+# Small refactor in our flake
+
+```nix
+let
+    pkgs = nixpkgs.legacyPackages.${system};
+    helloNix = pkgs.callPackage ./hello-nix { inherit pkgs; };
+  in
+  {
+    # ...
+    packages.default = helloNix;
+    packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs; };
+  }
+);
+```
+
+# Small refactor to our flake
+
+```nix
+packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs helloNix; };
+```
+
+# Back to our build, we can use our package
+
+
+```nix
+{
+  helloNix,
+  pkgs ? import <nixpkgs> { },
+}:
+
+pkgs.dockerTools.buildImage {
+  name = "hello-nix";
+  tag = helloNix.version
+  config = {
+    Cmd = [ "${helloNix}/bin/hello-nix" ];
+  };
+}
+```
+
+# Building again with our package now
+
+```bash
+$ docker load $(nix build .#dockerImage --no-link --print-out-paths)
+Loaded image: hello-nix:0.0.1
+$ docker run hello-nix
+Hello from nix!
+```
+
+# Extending our docker image with bash
+
+```nix
+pkgs.dockerTools.buildImage {
+  name = "hello-nix";
+  tag = helloNix.version;
+
+  copyToRoot = pkgs.buildEnv {
+    name = "image-root";
+    paths = with pkgs; [
+      helloNix
+      bashInteractive
+      coreutils
+    ];
+    pathsToLink = [ "/bin" ];
+  };
+  config = {
+    Cmd = [ "/bin/hello-nix" ];
+  };
+}
+```
+
+# Extending our docker image with bash
+
+```bash
+$ docker load $(nix build .#dockerImage --no-link --print-out-paths)
+Loaded image: hello-nix:0.0.1
+$ docker run -it /bin/bash
+bash-5.2#
+```
+
+# Adding runtime dependancies
+
+Back to our `flake.nix`
+
+```nix
+devShell = pkgs.mkShell {
+  buildInputs = with pkgs; [
+    cargo
+    rustc
+    rust-analyzer
+    rustfmt
+    figlet
+    lolcat
+  ];
+};
+```
+
+# Testing package dependancies for development
+
+```bash
+$ cd hello-nix
+$ cargo run | figlet | lolcat
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/hello-nix`
+ _   _      _ _          __                             _      _
+| | | | ___| | | ___    / _|_ __ ___  _ __ ___    _ __ (_)_  _| |
+| |_| |/ _ \ | |/ _ \  | |_| '__/ _ \| '_ ` _ \  | '_ \| \ \/ / |
+|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |>  <|_|
+|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)
+```
+
+# Adding package dependancies to our package build
+
+```nix
+pkgs.rustPlatform.buildRustPackage {
+  # ...
+
+  nativeBuildInputs = [ pkgs.makeWrapper ];
+
+  postInstall = ''
+    wrapProgram $out/bin/hello-nix \
+      --prefix PATH : ${pkgs.lolcat}/bin \
+      --prefix PATH : ${pkgs.figlet}/bin \
+      --add-flags "| figlet | lolcat"
+  '';
+}
+```
+
+# Using makeWrapper
+
+```bash
+$ nix build .#
+$ cat result/bin/hello-nix
+#! /nix/store/xy4jjgw87sbgwylm5kn047d9gkbhsr9x-bash-5.2p37/bin/bash -e
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin'':'/':'}
+PATH='/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin'':'/':'}
+PATH='/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+exec "/nix/store/jpfbhrzd6wpm607w1llyl52bs3dm074w-hello-nix-0.0.1/bin/.hello-nix-unwrapped"  | figlet | lolcat "$@"
+```
+
+# Running our build
+
+```bash
+$ nix run .#
+ _   _      _ _          __                             _      _
+| | | | ___| | | ___    / _|_ __ ___  _ __ ___    _ __ (_)_  _| |
+| |_| |/ _ \ | |/ _ \  | |_| '__/ _ \| '_ ` _ \  | '_ \| \ \/ / |
+|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |>  <|_|
+|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)
+
+```
+
+# Running from docker
+
+```bash
+$ docker load < $(nix build .#dockerImage --no-link --print-out-paths)
+Loaded image: hello-nix:0.0.1
+$ docker run -it hello-nix:0.0.1
+ _   _      _ _          __                             _      _
+| | | | ___| | | ___    / _|_ __ ___  _ __ ___    _ __ (_)_  _| |
+| |_| |/ _ \ | |/ _ \  | |_| '__/ _ \| '_ ` _ \  | '_ \| \ \/ / |
+|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |>  <|_|
+|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)
+
+```
+
+# Running the unwrapped version
+
+```bash
+$ docker run -it hello-nix:0.0.1 /bin/.hello-nix-wrapped
+Hello from nix!
+```
+
+# Take-aways and jumping off points
+
+Now that you've gotten a quick tour of how nix can be helpful in building out your dev
+environments, I encourage you to explore and learn more. 
+
+Some jumping off points:
+
+* [devenv](https://devenv.sh/) for pinning languages and adding services (i.e. postgres, redis)
+* [dockertools](https://ryantm.github.io/nixpkgs/builders/images/dockertools/)  for building containers with nix
+* [flakes](https://nixos.wiki/wiki/flakes) for more details about building flakes
+* [nix create and debug packages](https://nixos.wiki/wiki/Nixpkgs/Create_and_debug_packages) to help build your own packages
+* [search.nixos.org](https://search.nixos.org/packages) to explore packages
+* [zero to nix](https://zero-to-nix.com/) to learn more about nix
+
+
+I hope this inspires you to learn more and experiment!

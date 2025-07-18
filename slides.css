@@ -1,0 +1,41 @@
+<style>
+.slides {
+  font-size: medium;
+  h1 {
+    font-size: xx-large;
+  }
+  h2 {
+    text-align: left;
+    font-size: x-large;
+  }
+}
+.reveal ul {
+    display: block;
+    margin-bottom: 0.5em;
+}
+.reveal ol {
+    display: block;
+}
+.reveal .sourceCode {
+    font-size: medium;
+    overflow: hidden;
+    text-overflow: wrap;
+}
+
+img {
+    max-height: 350px !important;
+}
+
+figcaption {
+    font-size: 0.6em !important;
+    font-style: italic !important;
+}
+
+.subtitle {
+    font-style: italic !important;
+}
+
+.date {
+    font-size: 0.75em !important;
+}
+</style>

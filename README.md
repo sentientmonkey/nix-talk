@@ -454,6 +454,8 @@ the package for your user rather than just for this repository.
 
 ```bash
 $ nix profile install nixpkgs#direnv
+$ echo 'eval "$(direnv hook zsh)"' >> ~/.bashrc
+$ source ~/.bashrc
 ```
 
 ```bash
@@ -730,7 +732,7 @@ $ git add hello-nix/build-docker.nix
 $ docker load $(nix build .#dockerImage --no-link --print-out-paths)
 Loaded image: hello-nix:0.0.1
 $ docker run hello-nix:0.0.1
-Hello from nix!
+Hello, World!
 ```
 
 Now, we want to use our build nix package. Let's do a small refactor first to extract our package

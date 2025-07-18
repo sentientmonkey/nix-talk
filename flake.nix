@@ -19,8 +19,13 @@
           buildInputs = with pkgs; [
             just
             pandoc
-            texliveSmall
+            imagemagick
+            texliveFull
+            nodejs
           ];
+          shellHook = ''
+            npm install
+          '';
         };
       }
     );
