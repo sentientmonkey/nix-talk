@@ -11,15 +11,15 @@
 }
 .reveal ul {
     display: block;
-    margin-bottom: 0.5em;
+    margin-bottom: 1.25em;
 }
 .reveal ol {
     display: block;
 }
-.reveal .sourceCode {
+.reveal code.sourceCode {
     font-size: medium;
-    overflow: hidden;
-    text-overflow: wrap;
+    overflow: auto;
+    text-wrap: wrap;
 }
 
 img {

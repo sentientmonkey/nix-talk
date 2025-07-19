@@ -42,6 +42,11 @@ toc: true
 * Have worked heavily with modernizing legacy systems
 * Usually work in small agile teams
 
+::: notes
+A bit about me and why I care so much about this problem.
+:::
+
+
 # The Quest for Reproducible Development Environments
 
 * automake (and porting)
@@ -52,11 +57,26 @@ toc: true
 * Language managers: (rvm, virtualenv, nvm)
 * Docker
 
+::: notes
+I've tried a lot of different tools to solve these problems. They've all had different drawbacks.
+Either they don't really work for all environments, they rely on virtualization, or they solve
+the problem for one specific language.
+:::
+
 # But they always fall short
 
 * System architecture woes (again!)
 * Personal machine drift
 * Working with multiple projects across teams
+
+::: notes
+These tools are great but they fall short of solving the problem all of the way.
+Intel vs Apple Silicon
+Mac vs Linux
+DLL-hell?
+Apps fighting over libxml or openssl issues?
+Things going sideways after OS upgrade (or worse inconsistent between developers?)
+:::
 
 # How Nix is different
 
@@ -64,11 +84,23 @@ toc: true
 * Builds packages with a functional language
 * Allows you to link to system, user, or shell environments these packages
 
+::: notes
+nix has a very different way for solving this problem. It provides a store for conten adressable
+packages defined in a functional language. This allows you 
+:::
+
 # First steps - installing
 
 ```bash
 $ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
 ```
+::: notes
+We're going to walk through setting everything up one step at a time.
+I don't expect you to follow-along real-time, but you can go through these slides later if you want
+The goal is to learn how these things work together.
+We're using determinate nix here, which is a distribution of nix that makes it easier to use.
+:::
+
  
 # Creating shell with curl
  
@@ -95,6 +127,12 @@ copying path '/nix/store/9pn6y4zlszr9w26rg2h52l3sd0wvzjvd-nghttp2-1.65.0-dev' fr
 copying path '/nix/store/wznrhnlrvamvihizpnizjfh5hs55z98n-curl-8.14.1-dev' from 'https://cache.nixos.org'...
 ```
 
+::: notes
+We can use `nix-shell` to create a temporary shell with curl installed.
+Note the dependencies required and they they are content-addressable and versioned.
+Also note that means they be downloaded.
+:::
+
 # Creating shell with curl
 
 ```bash
@@ -107,6 +145,11 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
 [nix-shell:~/workspace/nix-talk]$ which curl
 /nix/store/wq4mwdypl1wmlhyrr69wggv8jdn2h9j9-curl-8.14.1-bin/bin/curl
 ```
+
+::: notes
+We can see that it works for us and what features are enabled.
+We can also see where this version is built in the store.
+:::
 
 # Showing runtime dependencies (Linux)
 
@@ -139,6 +182,10 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
         /nix/store/q4wq65gl3r8fy746v9bbwgx4gzn0r2kl-glibc-2.40-66/lib/ld-linux-x86-64.so.2 => /nix/store/q4wq65gl3r8fy746v9bbwgx4gzn0r2kl-glibc-2.40-66/lib64/ld-linux-x86-64.so.2 (0x00007f0e95cfc000)
 ```
 
+::: notes
+Even better, we can use ldd to see what shared objects curl uses
+:::
+
 # Showing runtime dependencies (macOS)
 
 ```bash
@@ -162,12 +209,22 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
         /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1292.100.5)
 ```
 
+::: notes
+The macOS version works the same but looks a bit different.
+Note here it relies on some macOS system dependencies.
+:::
+
 # How nix is different
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ exit 
 exit
 ```
+::: notes
+And we can exit the shell when we're done.
+The package is still built (until garbage collected), but no longer in your shell.
+:::
+
 
 # Your first environment
 
@@ -177,6 +234,13 @@ $ cd ~/workspace/nix-first-steps
 $ git init
 $ nix flake init templates#utils-generic
 ```
+
+::: notes
+First let's make a git repo and initialize our "flake"
+A flake is way to version-pin dependencies and structure nix environments
+While it's "experimental", it's on by default for determinate and the preferred approach when using
+nix for environments.
+:::
 
 # Your first environment
 `flake.nix`:
@@ -201,6 +265,11 @@ $ nix flake init templates#utils-generic
 }
 ```
 
+::: notes
+This is our flake configuration. Don't worry that you don't understand this yet, we'll learn 
+what this all means soon.
+:::
+
 # Your first environment
 `.envrc`:
 
@@ -209,12 +278,21 @@ $ nix flake init templates#utils-generic
 use flake
 ```
 
+::: notes
+This also adds an envrc that uses our flake. direnv, which we'll install later, will use this to 
+load our dev shell.
+:::
 
 # Nix the language
 
 ```nix
 # Text that follows a `#` is a comment!
 ```
+
+::: notes
+Let's take some time to learn nix (the language)
+Comments start with Hashes (Octothorpes)
+:::
 
 # Nix the language
 
@@ -223,6 +301,10 @@ use flake
 
 "foo"
 ```
+
+::: notes
+Strings are double quoted
+:::
 
 # Nix the language
 
@@ -234,6 +316,10 @@ string
 ''
 ```
 
+::: notes
+Multi-line are quoted with two single quotes
+:::
+
 # Nix the language
 
 ```nix
@@ -242,6 +328,10 @@ string
 5
 ```
 
+::: notes
+numbers look like numbers
+:::
+
 # Nix the language
 
 ```nix
@@ -249,6 +339,10 @@ string
 
 [ 1 2 "foo" ]
 ```
+::: notes
+Lists use brackets and do not seperate with commas.
+Note that we can have different types of items in our lists.
+:::
 
 # Nix the language
 
@@ -257,6 +351,11 @@ string
 
 {}
 ```
+::: notes
+Attribute-sets use curly braces and work like key-value storage objects.
+This is like a dictionary, hash, or object (in javascript)
+:::
+
 
 # Nix the language
 
@@ -269,6 +368,11 @@ string
 }
 ```
 
+::: notes
+Example of assigning attribute sets.
+Note that the keys are not quoted, and that semi-colons end each assignment.
+:::
+
 # Nix the language
 
 ```nix
@@ -280,6 +384,10 @@ string
   };
 }
 ```
+::: notes
+Attribute sets can also hold attribute-sets
+:::
+
 
 # Nix the language
 
@@ -288,6 +396,10 @@ string
 
 { foo.bar = "baz"; }
 ```
+
+::: notes
+This is so common that there's a shorthand for assigning nested attributes.
+:::
 
 # Nix the language
 
@@ -301,6 +413,27 @@ string
 }
 ```
 
+::: notes
+Back to our inputs example. We can now understand this a bit more.
+Do you see how you could re-write this
+to be shorter?
+:::
+
+# Nix the language
+
+```nix
+# This is our inputs example, but shorter
+
+{
+  inputs.utils.url = "github:numtide/flake-utils";
+}
+```
+
+::: notes
+We won't actually change this, but here's the shorter example.
+:::
+
+
 # Nix the language
 
 ```nix
@@ -308,6 +441,10 @@ string
 
 x: x + 1
 ```
+
+::: notes
+functions use a colon to with a single parameter on the left and function body on the right
+:::
 
 # Nix the language
 
@@ -317,6 +454,11 @@ x: x + 1
 (x: x + 1) 2
 ```
 
+::: notes
+You can call a function applying an argument, but you may need
+to wrap in parenthesis or nix will thing it's a part of the function body
+:::
+
 # Nix the language
 
 ```nix
@@ -324,6 +466,11 @@ x: x + 1
 
 { a, b }: a + b
 ```
+
+::: notes
+Most of the time you'll see attribute sets as function arguments
+because it makes it easier to add new values to a call.
+:::
 
 # Nix the language
 
@@ -336,6 +483,10 @@ x: x + 1
 }
 ```
 
+::: notes
+Calling a function with an attribute set works the same as it did with the single value
+:::
+
 # Nix the language
 
 ```nix
@@ -344,13 +495,10 @@ x: x + 1
 a: b: a + b
 ```
 
-# Nix the language
-
-```nix
-# Again, using parenthesis to apply
-
-(a: b: a + b) 2 3
-```
+::: notes
+Functions can also be curried!
+This is a function that returns a function that adds two numbers.
+:::
 
 # Nix the language
 
@@ -359,6 +507,25 @@ a: b: a + b
 
 (a: b: a + b) 2 3
 ```
+
+::: notes
+We can use parenthesis to apply here.
+Note that if you left off the 3 here, you would have function 
+that adds 2 to a number.
+:::
+
+# Nix the language
+
+```nix
+# Again, using parenthesis to apply
+
+((a: b: a + b) 2) 3
+```
+
+::: notes
+You can think of the application like this, but the extra
+parenthesis aren't needed single every function takes one argument.
+:::
 
 # Nix the language
 
@@ -375,11 +542,19 @@ a: b: a + b
     utils.lib.eachDefaultSystem (system: { });
 }
 ```
+::: notes
+Looking back at our outputs line, we can see that outputs is a key for an attribute set
+that returns a function with an attribute set of three values (self, nixpkgs, utils)
+and that function calls into attribute set of utils lib eachDefaultSystem
+which passes a function that takes system and returns an attribute set!
+For making this slide shorter, the attribute set here is empty.
+:::
+
 
 # Nix the language
 
 ```nix
-# `let` blocks allow you to assign values you can use inside an `in` block
+# `let` blocks allow you to assign values you can use inside an `in`attribute set 
 
 let
   a = 10;
@@ -388,6 +563,10 @@ in
   x = a;
 }
 ```
+::: notes
+Back to learning new things...
+let allows you to assign values you can us in an in attribute set.
+:::
 
 # Nix the language
 
@@ -402,39 +581,10 @@ in
   ${a} = 10;
 }
 ```
-
-# Nix the language
-
-```nix
-# Assigning a value to it's name is so common that there's a shorthand with `inherit`
-
-let
-  a = 10;
-  b = 12;
-  c = 5;
-in
-{
-  a = a;
-  b = b;
-  c = c;
-}
-```
-
-# Nix the language
-
-```nix
-# Assigning a value to it's name is so common that there's a shorthand with `inherit`
-
-let
-  a = 10;
-  b = 12;
-  c = 5;
-in
-{
-  inherit a b c;
-}
-
-```
+::: notes
+Sometimes you may want to assign the value of what a is (i.e. x) as a key.
+You can use interpolation of dollar curly braces for this.
+:::
 
 # Nix the language
 
@@ -453,6 +603,53 @@ in
   "linux"
   { nixpkgs.legacyPackages.linux = "awesome"; }
 ```
+
+::: notes
+Looking back at our system, that's how it's being used - the key is interpolated
+:::
+
+
+# Nix the language
+
+```nix
+# Assigning a value to it's name is so common that there's a shorthand with `inherit`
+
+let
+  a = 10;
+  b = 12;
+  c = 5;
+in
+{
+  a = a;
+  b = b;
+  c = c;
+}
+```
+::: notes
+You can assign multiple values. But there's a shortcut because this is so common.
+:::
+
+
+# Nix the language
+
+```nix
+# Assigning a value to it's name is so common that there's a shorthand with `inherit`
+
+let
+  a = 10;
+  b = 12;
+  c = 5;
+in
+{
+  inherit a b c;
+}
+
+```
+::: notes
+It's inherit
+This returns an attribute set with a b and c as keys and the respective values as values.
+:::
+
 
 # Nix the language
 
@@ -479,6 +676,10 @@ in
   x.c
 ]
 ```
+::: notes
+Sometimes repeating keys can get cumbersome
+:::
+
 
 # Nix the language
 
@@ -499,6 +700,11 @@ with x;
   c
 ]
 ```
+
+::: notes
+So there's a with keyword that lets us automatically scope keys.
+This is the same as x.a, x.b, x.c
+:::
 
 # Nix the language
 

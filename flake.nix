@@ -17,14 +17,16 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
-            just
-            pandoc
+            fswatch
             imagemagick
-            texliveFull
+            just
             nodejs
+            pandoc
+            texliveFull
           ];
           shellHook = ''
             npm install
+            export PATH=$PATH:$(pwd)/node_modules/.bin
           '';
         };
       }

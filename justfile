@@ -16,9 +16,14 @@ revealjs:
     -V revealjs-url=https://unpkg.com/reveal.js \
     --include-in-header=slides.css \
     -V theme=solarized
+  echo "Slides generated at index.html"
 
-serve:
-  ./node_modules/.bin/static -p 8000
+watch:
+  fswatch -o slides.md slides.css img/*.svg \
+    | xargs -I{}  just revealjs
+
+serve: revealjs
+  http-server -p 8000
 
 clean:
   rm -f slides.pptx slides.pdf index.html img/*.png

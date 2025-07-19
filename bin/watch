@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+echo "Watching for changes in slides.md and slides.css..."
+fswatch -o slides.md slides.css \
+  | xargs -I{} just revealjs
+
