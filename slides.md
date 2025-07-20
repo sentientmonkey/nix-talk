@@ -16,26 +16,25 @@ title-slide-attributes:
     data-background-image: /img/nix-snowflake-rainbow.png
     data-background-size: contain
 #logo: img/nix-snowflake-rainbow.png
-date:
+date: 
 lang: en-US
 section-titles: false
-toc: true
+toc: false
 ---
 
-# Goals & Expectations
-
-## Goals
+### Goals {text-align: left}
 - Beginner-friendly intro to nix
 - Introduce concepts and language
 - Get you excited about nix!
 
 
-## Expectations
+### Expectations
 - Familiarity with command line & shell
 - Understand at least one programming language like `javascript`
 
+---
 
-# Background
+## Background
 
 * Been a developer for > 20 years
 * Dealt with countless build/run dependency issues
@@ -1503,7 +1502,18 @@ There are just a few jumping off points for learning more that I've found helpfu
 
 # Thank you!
 
+## Repos with slides and code
+* [github/sentientmonkey/nix-talk](https://github.com/sentientmonkey/nix-talk)
+* [github/sentientmonkey/nix-first-steps](https://github.com/sentientmonkey/nix-first-steps)
+* [github/sentientmonkey/nix-config](https://github.com/sentientmonkey/nix-config)
+
+## Contact info
+* `_swindsor` on PDX DevOps Discord
+* `swindsor` at gmail for email
+* **sentientmonkey** on github
+
 ::: notes
+Here's some of my contact info if you want to follow up!
 A big thank you for PDX DevOps for hosting and letting me share!
 A bit thank you to you for sticking through this!
 :::

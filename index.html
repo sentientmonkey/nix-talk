@@ -57,54 +57,51 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
     div.sourceCode
-      {   }
+      { color: #a9b1d6;  }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code span { color: #a9b1d6; } /* Normal */
+    code span.al { color: #ff9e64; background-color: #414868; font-weight: bold; } /* Alert */
+    code span.an { color: #6a75a8; } /* Annotation */
+    code span.at { color: #bb9af7; } /* Attribute */
+    code span.bn { color: #ff9e64; } /* BaseN */
+    code span.bu { color: #9aa5ce; } /* BuiltIn */
+    code span.cf { color: #bb9af7; } /* ControlFlow */
+    code span.ch { color: #9ece6a; } /* Char */
+    code span.cn { color: #ff9e64; } /* Constant */
+    code span.co { color: #565f89; } /* Comment */
+    code span.cv { color: #bb9af7; } /* CommentVar */
+    code span.do { color: #5a638c; } /* Documentation */
+    code span.dt { color: #bb9af7; } /* DataType */
+    code span.dv { color: #ff9e64; } /* DecVal */
+    code span.er { color: #db4b4b; } /* Error */
+    code span.ex { color: #73daca; } /* Extension */
+    code span.fl { color: #ff9e64; } /* Float */
+    code span.fu { color: #7aa2f7; } /* Function */
+    code span.im { color: #7dcfff; } /* Import */
+    code span.in { color: #6a75a8; } /* Information */
+    code span.kw { color: #bb9af7; } /* Keyword */
+    code span.op { color: #bb9af7; } /* Operator */
+    code span.ot { color: #f7768e; } /* Other */
+    code span.pp { color: #bb9af7; } /* Preprocessor */
+    code span.re { color: #a9b1d6; background-color: #414868; } /* RegionMarker */
+    code span.sc { color: #7dcfff; } /* SpecialChar */
+    code span.ss { color: #b4f9f8; } /* SpecialString */
+    code span.st { color: #9ece6a; } /* String */
+    code span.va { color: #c0caf5; } /* Variable */
+    code span.vs { color: #e0af68; } /* VerbatimString */
+    code span.wa { color: #c49a5a; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/solarized.css" id="theme">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/moon.css" id="theme">
   <style>
   .slides {
     font-size: medium;
-    h1 {
-      font-size: xx-large;
-    }
     h2 {
       text-align: left;
-      font-size: x-large;
     }
   }
   .reveal ul {
@@ -147,29 +144,25 @@
   <p class="author">Scott Windsor</p>
   <p class="institute">Devops PDX</p>
 </section>
-<section id="TOC">
-<nav role="doc-toc"> 
 
-</nav>
-</section>
+<section class="slide level1">
 
-<section id="goals-expectations" class="slide level1">
-<h1>Goals &amp; Expectations</h1>
-<h2 id="goals">Goals</h2>
+<h3 id="goals-text-align-left">Goals {text-align: left}</h3>
 <ul>
 <li>Beginner-friendly intro to nix</li>
 <li>Introduce concepts and language</li>
 <li>Get you excited about nix!</li>
 </ul>
-<h2 id="expectations">Expectations</h2>
+<h3 id="expectations">Expectations</h3>
 <ul>
 <li>Familiarity with command line &amp; shell</li>
 <li>Understand at least one programming language like
 <code>javascript</code></li>
 </ul>
 </section>
-<section id="background" class="slide level1">
-<h1>Background</h1>
+<section class="slide level1">
+
+<h2 id="background">Background</h2>
 <ul>
 <li>Been a developer for &gt; 20 years</li>
 <li>Dealt with countless build/run dependency issues</li>
@@ -1523,9 +1516,25 @@ learning more that I’ve found helpful</p>
 </section>
 <section id="thank-you" class="slide level1">
 <h1>Thank you!</h1>
+<h2 id="repos-with-slides-and-code">Repos with slides and code</h2>
+<ul>
+<li><a
+href="https://github.com/sentientmonkey/nix-talk">github/sentientmonkey/nix-talk</a></li>
+<li><a
+href="https://github.com/sentientmonkey/nix-first-steps">github/sentientmonkey/nix-first-steps</a></li>
+<li><a
+href="https://github.com/sentientmonkey/nix-config">github/sentientmonkey/nix-config</a></li>
+</ul>
+<h2 id="contact-info">Contact info</h2>
+<ul>
+<li><code>_swindsor</code> on PDX DevOps Discord</li>
+<li><code>swindsor</code> at gmail for email</li>
+<li><strong>sentientmonkey</strong> on github</li>
+</ul>
 <aside class="notes">
-<p>A big thank you for PDX DevOps for hosting and letting me share! A
-bit thank you to you for sticking through this!</p>
+<p>Here’s some of my contact info if you want to follow up! A big thank
+you for PDX DevOps for hosting and letting me share! A bit thank you to
+you for sticking through this!</p>
 </aside>
 </section>
     </div>

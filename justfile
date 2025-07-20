@@ -14,12 +14,14 @@ images:
 revealjs:
   pandoc -t revealjs -s -o index.html slides.md \
     -V revealjs-url=https://unpkg.com/reveal.js \
-    --include-in-header=slides.css \
-    -V theme=solarized
+    --include-in-header=header.html \
+    -V theme=moon \
+    --highlight-style=tokyo-night-storm.theme
   echo "Slides generated at index.html"
 
 watch:
-  fswatch -o slides.md slides.css img/*.svg \
+  just revealjs && \
+  fswatch -o slides.md header.html img/*.svg \
     | xargs -I{}  just revealjs
 
 serve: revealjs
