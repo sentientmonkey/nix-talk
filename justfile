@@ -1,8 +1,9 @@
+code_style := "tokyo-night-storm.theme"
 ppt:
-  pandoc slides.md --highlight-style=tango -o slides.pptx
+  pandoc slides.md --highlight-style={{code_style}} -o slides.pptx
 
 pdf:
-  pandoc slides.md --highlight-style=tango -t beamer -o slides.pdf
+  pandoc slides.md --highlight-style={{code_style}} -t beamer -o slides.pdf
 
 images:
   magick -size 500x500 \
@@ -16,7 +17,7 @@ revealjs:
     -V revealjs-url=https://unpkg.com/reveal.js \
     --include-in-header=header.html \
     -V theme=moon \
-    --highlight-style=tokyo-night-storm.theme
+    --highlight-style={{code_style}}
   echo "Slides generated at index.html"
 
 watch:

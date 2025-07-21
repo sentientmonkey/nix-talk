@@ -22,7 +22,7 @@ section-titles: false
 toc: false
 ---
 
-### Goals {text-align: left}
+### Goals
 - Beginner-friendly intro to nix
 - Introduce concepts and language
 - Get you excited about nix!
