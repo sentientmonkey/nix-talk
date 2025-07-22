@@ -22,13 +22,13 @@ section-titles: false
 toc: false
 ---
 
-### Goals
+## Goals
 - Beginner-friendly intro to nix
 - Introduce concepts and language
 - Get you excited about nix!
 
 
-### Expectations
+## Expectations
 - Familiarity with command line & shell
 - Understand at least one programming language like `javascript`
 
@@ -43,8 +43,9 @@ toc: false
 
 ::: notes
 A bit about me and why I care so much about this problem.
+One of my first programming jobs involved maintaining a solaris port of a windows app.
+I learned quickly how hard portability really is, and that's been a theme in my career.
 :::
-
 
 # The Quest for Reproducible Development Environments
 
@@ -58,7 +59,7 @@ A bit about me and why I care so much about this problem.
 
 ::: notes
 I've tried a lot of different tools to solve these problems. They've all had different drawbacks.
-Either they don't really work for all environments, they rely on virtualization, or they solve
+Either they don't really work for all environments, they rely on virtualisation, or they solve
 the problem for one specific language.
 :::
 
@@ -84,8 +85,9 @@ Things going sideways after OS upgrade (or worse inconsistent between developers
 * Allows you to link to system, user, or shell environments these packages
 
 ::: notes
-nix has a very different way for solving this problem. It provides a store for conten adressable
-packages defined in a functional language. This allows you 
+nix has a very different way for solving this problem. It provides a store for content addressable
+packages defined in a functional language. This allows you to build isolated packages that don't
+have to be built over and over again.
 :::
 
 # First steps - installing
@@ -213,7 +215,7 @@ The macOS version works the same but looks a bit different.
 Note here it relies on some macOS system dependencies.
 :::
 
-# How nix is different
+# Exiting the shell
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ exit 
@@ -284,16 +286,32 @@ load our dev shell.
 
 # Nix the language
 
+```bash
+$ nix repl
+Nix 2.29.0
+Type :? for help.
+nix-repl>
+```
+
+::: notes
+Let's go over the nix language enough so we can understand that flake.nix code
+If you'd like, you can follow along by launching the nix repl.
+You can also use nix eval if you'd like
+:::
+
+# Comments
+
 ```nix
 # Text that follows a `#` is a comment!
 ```
 
 ::: notes
 Let's take some time to learn nix (the language)
+You can follow along with 
 Comments start with Hashes (Octothorpes)
 :::
 
-# Nix the language
+# Strings
 
 ```nix
 # This is a string
@@ -305,7 +323,7 @@ Comments start with Hashes (Octothorpes)
 Strings are double quoted
 :::
 
-# Nix the language
+# Multi-line Strings
 
 ```nix
 # This is a multi-line string
@@ -319,7 +337,7 @@ string
 Multi-line are quoted with two single quotes
 :::
 
-# Nix the language
+# Numbers
 
 ```nix
 # This is a number
@@ -331,7 +349,7 @@ Multi-line are quoted with two single quotes
 numbers look like numbers
 :::
 
-# Nix the language
+# Lists
 
 ```nix
 # This is a list of numbers and strings
@@ -343,7 +361,7 @@ Lists use brackets and do not seperate with commas.
 Note that we can have different types of items in our lists.
 :::
 
-# Nix the language
+# Attribute Sets
 
 ```nix
 # This is an empty "attribute set", which is also like a dictionary or hash in other languages.
@@ -356,7 +374,7 @@ This is like a dictionary, hash, or object (in javascript)
 :::
 
 
-# Nix the language
+# Attribute Sets
 
 ```nix
 # attribute sets can assign attributes
@@ -372,7 +390,7 @@ Example of assigning attribute sets.
 Note that the keys are not quoted, and that semi-colons end each assignment.
 :::
 
-# Nix the language
+# Attribute Sets
 
 ```nix
 # You can make nested attribute sets
@@ -388,7 +406,7 @@ Attribute sets can also hold attribute-sets
 :::
 
 
-# Nix the language
+# Attribute Sets
 
 ```nix
 # Or assign them with a "." for shorthand
@@ -400,7 +418,7 @@ Attribute sets can also hold attribute-sets
 This is so common that there's a shorthand for assigning nested attributes.
 :::
 
-# Nix the language
+# Inputs Example
 
 ```nix
 # This is our inputs example
@@ -418,7 +436,7 @@ Do you see how you could re-write this
 to be shorter?
 :::
 
-# Nix the language
+# Attribute Sets
 
 ```nix
 # This is our inputs example, but shorter
@@ -432,8 +450,7 @@ to be shorter?
 We won't actually change this, but here's the shorter example.
 :::
 
-
-# Nix the language
+# Functions
 
 ```nix
 # a `:` denotes a function with arguments on left and function body on the right
@@ -445,7 +462,7 @@ x: x + 1
 functions use a colon to with a single parameter on the left and function body on the right
 :::
 
-# Nix the language
+# Functions
 
 ```nix
 # You can call a function by applying an argument, but you may need to wrap in parenthesis
@@ -458,7 +475,7 @@ You can call a function applying an argument, but you may need
 to wrap in parenthesis or nix will thing it's a part of the function body
 :::
 
-# Nix the language
+# Functions
 
 ```nix
 # Most of the time you will see attributes as the function arguments
@@ -471,7 +488,7 @@ Most of the time you'll see attribute sets as function arguments
 because it makes it easier to add new values to a call.
 :::
 
-# Nix the language
+# Functions
 
 ```nix
 # When calling this you pass an attribute set
@@ -486,7 +503,7 @@ because it makes it easier to add new values to a call.
 Calling a function with an attribute set works the same as it did with the single value
 :::
 
-# Nix the language
+# Currying
 
 ```nix
 # Functions can also be `curried`
@@ -499,7 +516,7 @@ Functions can also be curried!
 This is a function that returns a function that adds two numbers.
 :::
 
-# Nix the language
+# Currying
 
 ```nix
 # Again, using parenthesis to apply
@@ -513,7 +530,7 @@ Note that if you left off the 3 here, you would have function
 that adds 2 to a number.
 :::
 
-# Nix the language
+# Currying
 
 ```nix
 # Again, using parenthesis to apply
@@ -526,7 +543,7 @@ You can think of the application like this, but the extra
 parenthesis aren't needed single every function takes one argument.
 :::
 
-# Nix the language
+# Outputs Example
 
 ```nix
 # Now we can understand the output line a bit better (omitting the `system` body for now)...
@@ -550,7 +567,7 @@ For making this slide shorter, the attribute set here is empty.
 :::
 
 
-# Nix the language
+# Let blocks
 
 ```nix
 # `let` blocks allow you to assign values you can use inside an `in`attribute set 
@@ -567,7 +584,7 @@ Back to learning new things...
 let allows you to assign values you can us in an in attribute set.
 :::
 
-# Nix the language
+# Interpolation
 
 ```nix
 # Sometimes you might want to refer to interpolated values for attribute keys
@@ -585,7 +602,7 @@ Sometimes you may want to assign the value of what a is (i.e. x) as a key.
 You can use interpolation of dollar curly braces for this.
 :::
 
-# Nix the language
+# System Example
 
 ```nix
 # This is how `${system}` being used in our flake. Here's smaller example that applies both
@@ -604,11 +621,12 @@ You can use interpolation of dollar curly braces for this.
 ```
 
 ::: notes
-Looking back at our system, that's how it's being used - the key is interpolated
+This is a function that takes system (linux), fetches the value assigned here (awesome), and
+returns it. Evaluating all of this returns "awesome".
 :::
 
 
-# Nix the language
+# Inherit
 
 ```nix
 # Assigning a value to it's name is so common that there's a shorthand with `inherit`
@@ -628,8 +646,7 @@ in
 You can assign multiple values. But there's a shortcut because this is so common.
 :::
 
-
-# Nix the language
+# Inherit
 
 ```nix
 # Assigning a value to it's name is so common that there's a shorthand with `inherit`
@@ -649,15 +666,14 @@ It's inherit
 This returns an attribute set with a b and c as keys and the respective values as values.
 :::
 
-
-# Nix the language
+# Almost there!
 
 ```nix
 # We have one last thing to learn before we understand all of our flake!
 # You can do it!
 ```
 
-# Nix the language
+# With
 
 ```nix
 # Sometimes repeating keys can get a bit cumbersome
@@ -680,7 +696,7 @@ Sometimes repeating keys can get cumbersome
 :::
 
 
-# Nix the language
+# With
 
 ```nix
 # We can use `with` to automatically scope all of the attributes in x
@@ -705,7 +721,7 @@ So there's a with keyword that lets us automatically scope keys.
 This is the same as x.a, x.b, x.c
 :::
 
-# Nix the language
+# Nix Language complete
 
 ```nix
 # You did it! Great job!
@@ -715,7 +731,7 @@ This is the same as x.a, x.b, x.c
 We made it through everything we need to understand out flake.
 :::
 
-# Updating our flake
+# Reviewing our flake
 
 `flake.nix`:
 
@@ -932,7 +948,7 @@ This will let us have a reproducible build we could share with others.
 There's some new syntax here, we haven't seen yet...
 :::
 
-# New syntax for nix
+# New syntax: ?
 
 ```nix
 # The `?` allows us to have optional values in attribute sets. This comes in handy for optional
@@ -1503,6 +1519,7 @@ There are just a few jumping off points for learning more that I've found helpfu
 # Thank you!
 
 ## Repos with slides and code
+* [sentientmonkey.github.io/nix-talk](https://sentientmonkey.github.io/nix-talk)
 * [github/sentientmonkey/nix-talk](https://github.com/sentientmonkey/nix-talk)
 * [github/sentientmonkey/nix-first-steps](https://github.com/sentientmonkey/nix-first-steps)
 * [github/sentientmonkey/nix-config](https://github.com/sentientmonkey/nix-config)
