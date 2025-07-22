@@ -13,7 +13,7 @@ linkstyle: bold
 aspectratio: 169
 titlegraphic: img/nix-snowflake-rainbow.png
 title-slide-attributes:
-    data-background-image: /img/nix-snowflake-rainbow.png
+    data-background-image: img/nix-snowflake-rainbow.png
     data-background-size: contain
 #logo: img/nix-snowflake-rainbow.png
 date: 
