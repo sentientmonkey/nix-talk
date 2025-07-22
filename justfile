@@ -1,9 +1,13 @@
 code_style := "tokyo-night-storm.theme"
-ppt:
-  pandoc slides.md --highlight-style={{code_style}} -o slides.pptx
 
-pdf:
-  pandoc slides.md --highlight-style={{code_style}} -t beamer -o slides.pdf
+pdf: revealjs
+  ./node_modules/puppeteer-cli/index.js print index.html slides.pdf \
+    --print-background \
+    --landscape \
+    --margin-top 0in \
+    --margin-bottom 0in \
+    --margin-left 0in \
+    --margin-right 0in
 
 images:
   magick -size 500x500 \
@@ -29,4 +33,4 @@ serve: revealjs
   http-server -p 8000
 
 clean:
-  rm -f slides.pptx slides.pdf index.html img/*.png
+  rm -f slides.pdf index.html img/*.png

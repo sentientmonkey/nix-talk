@@ -227,7 +227,7 @@ The package is still built (until garbage collected), but no longer in your shel
 :::
 
 
-# Your first environment
+# Creating a flake
 
 ```bash
 $ mkdir -p ~/workspace/nix-firs-steps
@@ -243,9 +243,21 @@ While it's "experimental", it's on by default for determinate and the preferred 
 nix for environments.
 :::
 
-# Your first environment
-`flake.nix`:
+# Loading the flake
+`.envrc`:
 
+```bash
+use flake
+```
+
+::: notes
+This adds an envrc that uses our flake. direnv, which we'll install later, will use this to 
+load our dev shell.
+:::
+
+
+# Our first flake
+`flake.nix`:
 
 ```nix
 {
@@ -268,20 +280,7 @@ nix for environments.
 
 ::: notes
 This is our flake configuration. Don't worry that you don't understand this yet, we'll learn 
-what this all means soon.
-:::
-
-# Your first environment
-`.envrc`:
-
-
-```bash
-use flake
-```
-
-::: notes
-This also adds an envrc that uses our flake. direnv, which we'll install later, will use this to 
-load our dev shell.
+what this all means soon. Let's go learn some of the language.
 :::
 
 # Nix the language
