@@ -408,13 +408,15 @@ learn some of the language.</p>
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix repl</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Nix</span> 2.29.0</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Type</span> :<span class="pp">?</span> for help.</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nix-repl</span><span class="op">&gt;</span></span></code></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">nix-repl</span><span class="op">&gt;</span> 1 + 2</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix eval <span class="at">--expr</span> <span class="st">&#39;1+2&#39;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;1+2&quot;</span> <span class="op">&gt;&gt;</span> math.nix</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix eval <span class="at">-f</span> math.nix</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;1+2&quot;</span> <span class="op">&gt;&gt;</span> math.nix</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix eval <span class="at">-f</span> math.nix</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
 <aside class="notes">
 <p>Let’s go over the nix language enough so we can understand that
 flake.nix code If you’d like, you can follow along by launching the nix
@@ -423,8 +425,8 @@ repl. You can also use nix eval if you’d like</p>
 </section>
 <section id="comments" class="slide level1">
 <h1>Comments</h1>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Text that follows a `#` is a comment!</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Text that follows a `#` is a comment!</span></span></code></pre></div>
 <aside class="notes">
 <p>Let’s take some time to learn nix (the language) You can follow along
 with Comments start with Hashes (Octothorpes)</p>
@@ -432,42 +434,42 @@ with Comments start with Hashes (Octothorpes)</p>
 </section>
 <section id="strings" class="slide level1">
 <h1>Strings</h1>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a string</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;foo&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a string</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;foo&quot;</span></span></code></pre></div>
 <aside class="notes">
 <p>Strings are double quoted</p>
 </aside>
 </section>
 <section id="multi-line-strings" class="slide level1">
 <h1>Multi-line Strings</h1>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a multi-line string</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;I&#39;m a mult-line</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">string</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a multi-line string</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;I&#39;m a mult-line</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">string</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;</span></span></code></pre></div>
 <aside class="notes">
 <p>Multi-line are quoted with two single quotes</p>
 </aside>
 </section>
 <section id="numbers" class="slide level1">
 <h1>Numbers</h1>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a number</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a number</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code></pre></div>
 <aside class="notes">
 <p>numbers look like numbers</p>
 </aside>
 </section>
 <section id="lists" class="slide level1">
 <h1>Lists</h1>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a list of numbers and strings</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">[</span> <span class="dv">1</span> <span class="dv">2</span> <span class="st">&quot;foo&quot;</span> <span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a list of numbers and strings</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">[</span> <span class="dv">1</span> <span class="dv">2</span> <span class="st">&quot;foo&quot;</span> <span class="op">]</span></span></code></pre></div>
 <aside class="notes">
 <p>Lists use brackets and do not seperate with commas. Note that we can
 have different types of items in our lists.</p>
@@ -475,10 +477,10 @@ have different types of items in our lists.</p>
 </section>
 <section id="attribute-sets" class="slide level1">
 <h1>Attribute Sets</h1>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an empty &quot;attribute set&quot;, which is also like a dictionary or hash in other languages.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">{}</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an empty &quot;attribute set&quot;, which is also like a dictionary or hash in other languages.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">{}</span></span></code></pre></div>
 <aside class="notes">
 <p>Attribute-sets use curly braces and work like key-value storage
 objects. This is like a dictionary, hash, or object (in javascript)</p>
@@ -486,13 +488,13 @@ objects. This is like a dictionary, hash, or object (in javascript)</p>
 </section>
 <section id="attribute-sets-1" class="slide level1">
 <h1>Attribute Sets</h1>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># attribute sets can assign attributes</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">foo</span> <span class="op">=</span> <span class="st">&quot;bar&quot;</span><span class="op">;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">baz</span> <span class="op">=</span> <span class="st">&quot;buzz&quot;</span><span class="op">;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># attribute sets can assign attributes</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">foo</span> <span class="op">=</span> <span class="st">&quot;bar&quot;</span><span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">baz</span> <span class="op">=</span> <span class="st">&quot;buzz&quot;</span><span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Example of assigning attribute sets. Note that the keys are not
 quoted, and that semi-colons end each assignment.</p>
@@ -500,24 +502,24 @@ quoted, and that semi-colons end each assignment.</p>
 </section>
 <section id="attribute-sets-2" class="slide level1">
 <h1>Attribute Sets</h1>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can make nested attribute sets</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">foo</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">bar</span> <span class="op">=</span> <span class="st">&quot;baz&quot;</span><span class="op">;</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can make nested attribute sets</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">foo</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">bar</span> <span class="op">=</span> <span class="st">&quot;baz&quot;</span><span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Attribute sets can also hold attribute-sets</p>
 </aside>
 </section>
 <section id="attribute-sets-3" class="slide level1">
 <h1>Attribute Sets</h1>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or assign them with a &quot;.&quot; for shorthand</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">foo</span>.<span class="va">bar</span> <span class="op">=</span> <span class="st">&quot;baz&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or assign them with a &quot;.&quot; for shorthand</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">foo</span>.<span class="va">bar</span> <span class="op">=</span> <span class="st">&quot;baz&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>This is so common that there’s a shorthand for assigning nested
 attributes.</p>
@@ -525,14 +527,14 @@ attributes.</p>
 </section>
 <section id="inputs-example" class="slide level1">
 <h1>Inputs Example</h1>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is our inputs example</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is our inputs example</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Back to our inputs example. We can now understand this a bit more. Do
 you see how you could re-write this to be shorter?</p>
@@ -540,22 +542,22 @@ you see how you could re-write this to be shorter?</p>
 </section>
 <section id="attribute-sets-4" class="slide level1">
 <h1>Attribute Sets</h1>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is our inputs example, but shorter</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span>.<span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is our inputs example, but shorter</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span>.<span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>We won’t actually change this, but here’s the shorter example.</p>
 </aside>
 </section>
 <section id="functions" class="slide level1">
 <h1>Functions</h1>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a `:` denotes a function with arguments on left and function body on the right</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">:</span> x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a `:` denotes a function with arguments on left and function body on the right</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">:</span> x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div>
 <aside class="notes">
 <p>functions use a colon to with a single parameter on the left and
 function body on the right</p>
@@ -563,10 +565,10 @@ function body on the right</p>
 </section>
 <section id="functions-1" class="slide level1">
 <h1>Functions</h1>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can call a function by applying an argument, but you may need to wrap in parenthesis</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">(</span><span class="va">x</span><span class="op">:</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can call a function by applying an argument, but you may need to wrap in parenthesis</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">(</span><span class="va">x</span><span class="op">:</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="dv">2</span></span></code></pre></div>
 <aside class="notes">
 <p>You can call a function applying an argument, but you may need to
 wrap in parenthesis or nix will thing it’s a part of the function
@@ -575,10 +577,10 @@ body</p>
 </section>
 <section id="functions-2" class="slide level1">
 <h1>Functions</h1>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Most of the time you will see attributes as the function arguments</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">a</span><span class="op">,</span> <span class="va">b</span> <span class="op">}</span>: a <span class="op">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Most of the time you will see attributes as the function arguments</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">a</span><span class="op">,</span> <span class="va">b</span> <span class="op">}</span>: a <span class="op">+</span> b</span></code></pre></div>
 <aside class="notes">
 <p>Most of the time you’ll see attribute sets as function arguments
 because it makes it easier to add new values to a call.</p>
@@ -586,13 +588,13 @@ because it makes it easier to add new values to a call.</p>
 </section>
 <section id="functions-3" class="slide level1">
 <h1>Functions</h1>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When calling this you pass an attribute set</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">a</span><span class="op">,</span> <span class="va">b</span> <span class="op">}</span>: a <span class="op">+</span> b<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When calling this you pass an attribute set</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">a</span><span class="op">,</span> <span class="va">b</span> <span class="op">}</span>: a <span class="op">+</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Calling a function with an attribute set works the same as it did
 with the single value</p>
@@ -600,10 +602,10 @@ with the single value</p>
 </section>
 <section id="currying" class="slide level1">
 <h1>Currying</h1>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions can also be `curried`</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Functions can also be `curried`</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b</span></code></pre></div>
 <aside class="notes">
 <p>Functions can also be curried! This is a function that returns a
 function that adds two numbers.</p>
@@ -611,10 +613,10 @@ function that adds two numbers.</p>
 </section>
 <section id="currying-1" class="slide level1">
 <h1>Currying</h1>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, using parenthesis to apply</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">(</span><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b<span class="op">)</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, using parenthesis to apply</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="op">(</span><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b<span class="op">)</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
 <aside class="notes">
 <p>We can use parenthesis to apply here. Note that if you left off the 3
 here, you would have function that adds 2 to a number.</p>
@@ -622,10 +624,10 @@ here, you would have function that adds 2 to a number.</p>
 </section>
 <section id="currying-2" class="slide level1">
 <h1>Currying</h1>
-<div class="sourceCode" id="cb29"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, using parenthesis to apply</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="op">((</span><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b<span class="op">)</span> <span class="dv">2</span><span class="op">)</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, using parenthesis to apply</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">((</span><span class="va">a</span><span class="op">:</span> <span class="va">b</span><span class="op">:</span> a <span class="op">+</span> b<span class="op">)</span> <span class="dv">2</span><span class="op">)</span> <span class="dv">3</span></span></code></pre></div>
 <aside class="notes">
 <p>You can think of the application like this, but the extra parenthesis
 aren’t needed single every function takes one argument.</p>
@@ -633,18 +635,18 @@ aren’t needed single every function takes one argument.</p>
 </section>
 <section id="outputs-example" class="slide level1">
 <h1>Outputs Example</h1>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can understand the output line a bit better (omitting the `system` body for now)...</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">outputs</span> <span class="op">=</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span><span class="op">,</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">nixpkgs</span><span class="op">,</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">utils</span><span class="op">,</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>:</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    utils<span class="op">.</span>lib<span class="op">.</span>eachDefaultSystem <span class="op">(</span><span class="va">system</span><span class="op">:</span> <span class="op">{</span> <span class="op">});</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can understand the output line a bit better (omitting the `system` body for now)...</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">outputs</span> <span class="op">=</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span><span class="op">,</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">nixpkgs</span><span class="op">,</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">utils</span><span class="op">,</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>:</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    utils<span class="op">.</span>lib<span class="op">.</span>eachDefaultSystem <span class="op">(</span><span class="va">system</span><span class="op">:</span> <span class="op">{</span> <span class="op">});</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Looking back at our outputs line, we can see that outputs is a key
 for an attribute set that returns a function with an attribute set of
@@ -656,15 +658,15 @@ shorter, the attribute set here is empty.</p>
 </section>
 <section id="let-blocks" class="slide level1">
 <h1>Let blocks</h1>
-<div class="sourceCode" id="cb31"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `let` blocks allow you to assign values you can use inside an `in`attribute set </span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> a<span class="op">;</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `let` blocks allow you to assign values you can use inside an `in`attribute set </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Back to learning new things… let allows you to assign values you can
 us in an in attribute set.</p>
@@ -672,16 +674,16 @@ us in an in attribute set.</p>
 </section>
 <section id="interpolation" class="slide level1">
 <h1>Interpolation</h1>
-<div class="sourceCode" id="cb32"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes you might want to refer to interpolated values for attribute keys</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use `${}` for this</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="st">&quot;x&quot;</span><span class="op">;</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">${</span>a<span class="sc">}</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes you might want to refer to interpolated values for attribute keys</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use `${}` for this</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="st">&quot;x&quot;</span><span class="op">;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">${</span>a<span class="sc">}</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Sometimes you may want to assign the value of what a is (i.e. x) as a
 key. You can use interpolation of dollar curly braces for this.</p>
@@ -689,20 +691,20 @@ key. You can use interpolation of dollar curly braces for this.</p>
 </section>
 <section id="system-example" class="slide level1">
 <h1>System Example</h1>
-<div class="sourceCode" id="cb33"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is how `${system}` being used in our flake. Here&#39;s smaller example that applies both</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># functions.</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">system</span><span class="op">:</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">nixpkgs</span> <span class="op">}</span>:</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  pkgs</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;linux&quot;</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">nixpkgs</span>.<span class="va">legacyPackages</span>.<span class="va">linux</span> <span class="op">=</span> <span class="st">&quot;awesome&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is how `${system}` being used in our flake. Here&#39;s smaller example that applies both</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># functions.</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">system</span><span class="op">:</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">nixpkgs</span> <span class="op">}</span>:</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  pkgs</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;linux&quot;</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span> <span class="va">nixpkgs</span>.<span class="va">legacyPackages</span>.<span class="va">linux</span> <span class="op">=</span> <span class="st">&quot;awesome&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>This is a function that takes system (linux), fetches the value
 assigned here (awesome), and returns it. Evaluating all of this returns
@@ -710,26 +712,6 @@ assigned here (awesome), and returns it. Evaluating all of this returns
 </aside>
 </section>
 <section id="inherit" class="slide level1">
-<h1>Inherit</h1>
-<div class="sourceCode" id="cb34"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigning a value to it&#39;s name is so common that there&#39;s a shorthand with `inherit`</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">c</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> a<span class="op">;</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> b<span class="op">;</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">c</span> <span class="op">=</span> c<span class="op">;</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<aside class="notes">
-<p>You can assign multiple values. But there’s a shortcut because this
-is so common.</p>
-</aside>
-</section>
-<section id="inherit-1" class="slide level1">
 <h1>Inherit</h1>
 <div class="sourceCode" id="cb35"><pre
 class="sourceCode nix"><code class="sourceCode nix"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigning a value to it&#39;s name is so common that there&#39;s a shorthand with `inherit`</span></span>
@@ -740,8 +722,28 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb35-1"><a href="#
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">c</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">inherit</span> <span class="va">a</span> <span class="va">b</span> <span class="va">c</span><span class="op">;</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> b<span class="op">;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">c</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>You can assign multiple values. But there’s a shortcut because this
+is so common.</p>
+</aside>
+</section>
+<section id="inherit-1" class="slide level1">
+<h1>Inherit</h1>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assigning a value to it&#39;s name is so common that there&#39;s a shorthand with `inherit`</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">a</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">b</span> <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">c</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">inherit</span> <span class="va">a</span> <span class="va">b</span> <span class="va">c</span><span class="op">;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>It’s inherit This returns an attribute set with a b and c as keys and
 the respective values as values.</p>
@@ -749,35 +751,14 @@ the respective values as values.</p>
 </section>
 <section id="almost-there" class="slide level1">
 <h1>Almost there!</h1>
-<div class="sourceCode" id="cb36"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We have one last thing to learn before we understand all of our flake!</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can do it!</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We have one last thing to learn before we understand all of our flake!</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can do it!</span></span></code></pre></div>
 </section>
 <section id="with" class="slide level1">
 <h1>With</h1>
-<div class="sourceCode" id="cb37"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes repeating keys can get a bit cumbersome</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">a</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">b</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">c</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="op">[</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>a</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>b</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>c</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
-<aside class="notes">
-<p>Sometimes repeating keys can get cumbersome</p>
-</aside>
-</section>
-<section id="with-1" class="slide level1">
-<h1>With</h1>
 <div class="sourceCode" id="cb38"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use `with` to automatically scope all of the attributes in x</span></span>
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sometimes repeating keys can get a bit cumbersome</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> <span class="op">{</span></span>
@@ -786,12 +767,33 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb38-1"><a href="#
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">c</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="kw">with</span> x<span class="op">;</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="op">[</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  a</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  b</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  c</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="op">[</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>a</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>b</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  x<span class="op">.</span>c</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<aside class="notes">
+<p>Sometimes repeating keys can get cumbersome</p>
+</aside>
+</section>
+<section id="with-1" class="slide level1">
+<h1>With</h1>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use `with` to automatically scope all of the attributes in x</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">a</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">b</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">c</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="kw">with</span> x<span class="op">;</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="op">[</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  a</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  b</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  c</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
 <aside class="notes">
 <p>So there’s a with keyword that lets us automatically scope keys. This
 is the same as x.a, x.b, x.c</p>
@@ -799,8 +801,8 @@ is the same as x.a, x.b, x.c</p>
 </section>
 <section id="nix-language-complete" class="slide level1">
 <h1>Nix Language complete</h1>
-<div class="sourceCode" id="cb39"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You did it! Great job!</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You did it! Great job!</span></span></code></pre></div>
 <aside class="notes">
 <p>We made it through everything we need to understand out flake.</p>
 </aside>
@@ -808,23 +810,23 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb39-1"><a href="#
 <section id="reviewing-our-flake" class="slide level1">
 <h1>Reviewing our flake</h1>
 <p><code>flake.nix</code>:</p>
-<div class="sourceCode" id="cb40"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">outputs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">self</span><span class="op">,</span> <span class="va">nixpkgs</span><span class="op">,</span> <span class="va">utils</span> <span class="op">}</span>: utils<span class="op">.</span>lib<span class="op">.</span>eachDefaultSystem <span class="op">(</span><span class="va">system</span><span class="op">:</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">devShell</span> <span class="op">=</span> pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">];</span></span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">};</span></span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">);</span></span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">inputs</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">outputs</span> <span class="op">=</span> <span class="op">{</span> <span class="va">self</span><span class="op">,</span> <span class="va">nixpkgs</span><span class="op">,</span> <span class="va">utils</span> <span class="op">}</span>: utils<span class="op">.</span>lib<span class="op">.</span>eachDefaultSystem <span class="op">(</span><span class="va">system</span><span class="op">:</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">devShell</span> <span class="op">=</span> pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">];</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">};</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">);</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Going back to our flake we can understand a bit better. A flake
 returns an attribute set with a few defined attributes. Inputs which
@@ -842,11 +844,11 @@ we need.</p>
 <h1>Moving nixpkgs to stable</h1>
 <p>We add an input for nixpkgs to <code>25.05</code> (overriding
 default)</p>
-<div class="sourceCode" id="cb41"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>inputs = <span class="op">{</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">nixpkgs</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:nixos/nixpkgs/nixos-25.05&quot;</span><span class="op">;</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>inputs = <span class="op">{</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">nixpkgs</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:nixos/nixpkgs/nixos-25.05&quot;</span><span class="op">;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">utils</span>.<span class="va">url</span> <span class="op">=</span> <span class="st">&quot;github:numtide/flake-utils&quot;</span><span class="op">;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
 <aside class="notes">
 <p>But first, let’s add in a new input, nixpkgs While it was defaulting
 to “unstable”, let’s actually pin to the current “stable” version of
@@ -858,16 +860,16 @@ releases of features. Again, our input url comes from github.</p>
 <h1>Adding packages to our devShell</h1>
 <p>These are for our rust app, but you can find more at <a
 href="https://search.nixos.org">search.nixos.org</a></p>
-<div class="sourceCode" id="cb42"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>devShell = pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>        <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>          cargo</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>          rustc</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>          rust-analyzer</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>          rustfmt</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">];</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span>;</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>devShell = pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>        <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>          cargo</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>          rustc</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>          rust-analyzer</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>          rustfmt</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">];</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span>;</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 <aside class="notes">
 <p>Let’s add our packages to make a rust app. Here we add cargo, rustc,
 rust-analyzer, &amp; rustfmt. Note that these all come from pkgs, but
@@ -878,14 +880,14 @@ we’re using the with to make this easier to read.</p>
 <h1>Enter the devShell</h1>
 <p>We can use <code>nix develop</code> to get to the shell.
 <code>.#</code> is a reference to the current flake.</p>
-<div class="sourceCode" id="cb43"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix develop .#</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> rustc <span class="at">--version</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ex">rustc</span> 1.86.0 <span class="er">(</span><span class="ex">05f9846f8</span> 2025-03-31<span class="kw">)</span> <span class="kw">(</span><span class="ex">built</span> from a source tarball<span class="kw">)</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> cargo <span class="at">--version</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> 1.86.0 <span class="er">(</span><span class="ex">adf9b6ad1</span> 2025-02-28<span class="kw">)</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> exit</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix develop .#</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> rustc <span class="at">--version</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ex">rustc</span> 1.86.0 <span class="er">(</span><span class="ex">05f9846f8</span> 2025-03-31<span class="kw">)</span> <span class="kw">(</span><span class="ex">built</span> from a source tarball<span class="kw">)</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> cargo <span class="at">--version</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> 1.86.0 <span class="er">(</span><span class="ex">adf9b6ad1</span> 2025-02-28<span class="kw">)</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">nix:nix-shell-env</span><span class="kw">)</span> <span class="ex">bash-5.2$</span> exit</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div>
 <aside class="notes">
 <p>Now that our flake is complete, we can use nix develop to enter a
 shell with our buildInputs in our path. Note the use of .# here - .
@@ -900,10 +902,10 @@ to be the default. Same for the reference .# is the same as
 <h1>direnv makes this better</h1>
 <p>If you don’t already have direnv installed, you can install to your
 profile via nix.</p>
-<div class="sourceCode" id="cb44"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix profile install nixpkgs#direnv</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&#39;eval &quot;$(direnv hook zsh)&quot;&#39;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source ~/.bashrc</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix profile install nixpkgs#direnv</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&#39;eval &quot;$(direnv hook zsh)&quot;&#39;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source ~/.bashrc</span></code></pre></div>
 <aside class="notes">
 <p>Let’s make this easier with direnv. If you don’t already have direnv
 installed, you can use nix profile install to install it to your profile
@@ -913,12 +915,12 @@ for your user.</p>
 <section id="direnv-makes-this-better-1" class="slide level1">
 <h1>direnv makes this better</h1>
 <p>Now the flake is evaluated when we enter the directory</p>
-<div class="sourceCode" id="cb45"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> direnv allow</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> loading ~/workspace/nix-first-steps/.envrc</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> using flake</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> export +AR +AS +CC +CONFIG_SHELL +CXX +DEVELOPER_DIR +HOST_PATH +IN_NIX_SHELL +LD +LD_DYLD_PATH +MACOSX_DEPLOYMENT_TARGET +NIX_APPLE_SDK_VERSION +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_BUILD_CORES +NIX_BUILD_TOP +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_CFLAGS_COMPILE +NIX_DONT_SET_RPATH +NIX_DONT_SET_RPATH_FOR_BUILD +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_IGNORE_LD_THROUGH_GCC +NIX_LDFLAGS +NIX_NO_SELF_RPATH +NIX_STORE +NM +OBJCOPY +OBJDUMP +PATH_LOCALE +RANLIB +SDKROOT +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +TEMP +TEMPDIR +TMP +ZERO_AR_DATE +__darwinAllowLocalNetworking +__impureHostDeps +__propagatedImpureHostDeps +__propagatedSandboxProfile +__sandboxProfile +__structuredAttrs +buildInputs +buildPhase +builder +cmakeFlags +configureFlags +depsBuildBuild +depsBuildBuildPropagated +depsBuildTarget +depsBuildTargetPropagated +depsHostHost +depsHostHostPropagated +depsTargetTarget +depsTargetTargetPropagated +doCheck +doInstallCheck +dontAddDisableDepTrack +mesonFlags +name +nativeBuildInputs +out +outputs +patches +phases +preferLocalBuild +propagatedBuildInputs +propagatedNativeBuildInputs +shell +shellHook +stdenv +strictDeps +system ~PATH ~TMPDIR ~XDG_DATA_DIRS</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> direnv allow</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> loading ~/workspace/nix-first-steps/.envrc</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> using flake</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="ex">direnv:</span> export +AR +AS +CC +CONFIG_SHELL +CXX +DEVELOPER_DIR +HOST_PATH +IN_NIX_SHELL +LD +LD_DYLD_PATH +MACOSX_DEPLOYMENT_TARGET +NIX_APPLE_SDK_VERSION +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_BUILD_CORES +NIX_BUILD_TOP +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_arm64_apple_darwin +NIX_CFLAGS_COMPILE +NIX_DONT_SET_RPATH +NIX_DONT_SET_RPATH_FOR_BUILD +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_IGNORE_LD_THROUGH_GCC +NIX_LDFLAGS +NIX_NO_SELF_RPATH +NIX_STORE +NM +OBJCOPY +OBJDUMP +PATH_LOCALE +RANLIB +SDKROOT +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +TEMP +TEMPDIR +TMP +ZERO_AR_DATE +__darwinAllowLocalNetworking +__impureHostDeps +__propagatedImpureHostDeps +__propagatedSandboxProfile +__sandboxProfile +__structuredAttrs +buildInputs +buildPhase +builder +cmakeFlags +configureFlags +depsBuildBuild +depsBuildBuildPropagated +depsBuildTarget +depsBuildTargetPropagated +depsHostHost +depsHostHostPropagated +depsTargetTarget +depsTargetTargetPropagated +doCheck +doInstallCheck +dontAddDisableDepTrack +mesonFlags +name +nativeBuildInputs +out +outputs +patches +phases +preferLocalBuild +propagatedBuildInputs +propagatedNativeBuildInputs +shell +shellHook +stdenv +strictDeps +system ~PATH ~TMPDIR ~XDG_DATA_DIRS</span></code></pre></div>
 <aside class="notes">
 <p>Now when we direnv allow and go back to our project, it will evaluate
 our flake (because of our envrc) and export all important variables for
@@ -928,9 +930,9 @@ our devshell.</p>
 <section id="direnv-makes-this-better-2" class="slide level1">
 <h1>direnv makes this better</h1>
 <p>Now our packages are just in our path!</p>
-<div class="sourceCode" id="cb46"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rustc <span class="at">--version</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rustc</span> 1.86.0 <span class="er">(</span><span class="ex">05f9846f8</span> 2025-03-31<span class="kw">)</span> <span class="kw">(</span><span class="ex">built</span> from a source tarball<span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rustc <span class="at">--version</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rustc</span> 1.86.0 <span class="er">(</span><span class="ex">05f9846f8</span> 2025-03-31<span class="kw">)</span> <span class="kw">(</span><span class="ex">built</span> from a source tarball<span class="kw">)</span></span></code></pre></div>
 <aside class="notes">
 <p>Now we just have our packages in our path</p>
 </aside>
@@ -938,10 +940,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href=
 <section id="building-our-app" class="slide level1">
 <h1>Building our app</h1>
 <p>Now that we have our environment, we can build our app.</p>
-<div class="sourceCode" id="cb47"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/workspace/nix-first-steps</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo new hello-nix</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd hello-nix</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/workspace/nix-first-steps</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo new hello-nix</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd hello-nix</span></code></pre></div>
 <aside class="notes">
 <p>We can build our rust app now with cargo</p>
 </aside>
@@ -950,10 +952,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href=
 <h1>Building our app</h1>
 <p>open up <code>hello-nix/src/main.rs</code> and change to the
 following:</p>
-<div class="sourceCode" id="cb48"><pre
-class="sourceCode rust"><code class="sourceCode rust"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Hello from nix!&quot;</span>)<span class="op">;</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode rust"><code class="sourceCode rust"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;Hello from nix!&quot;</span>)<span class="op">;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>This is a pretty simple rust app for our demo purposes. If you don’t
 know rust, that’s okay.</p>
@@ -962,24 +964,24 @@ know rust, that’s okay.</p>
 <section id="building-our-app-2" class="slide level1">
 <h1>Building our app</h1>
 <p>We can make sure this builds, tests, and runs.</p>
-<div class="sourceCode" id="cb49"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo build</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">Compiling</span> hello-nix v0.1.0 <span class="er">(</span><span class="ex">/Users/scott/workspace/nix-first-steps/hello-nix</span><span class="kw">)</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.77s</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo test</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>   <span class="ex">Compiling</span> hello-nix v0.1.0 <span class="er">(</span><span class="ex">/Users/scott/workspace/nix-first-steps/hello-nix</span><span class="kw">)</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Finished</span> <span class="kw">`</span><span class="bu">test</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.11s</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>       <span class="ex">Running</span> unittests src/main.rs <span class="er">(</span><span class="ex">target/debug/deps/hello_nix-c7e1c6d541507f78</span><span class="kw">)</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> 0 tests</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="bu">test</span> result: ok. 0 passed<span class="kw">;</span> <span class="ex">0</span> failed<span class="kw">;</span> <span class="ex">0</span> ignored<span class="kw">;</span> <span class="ex">0</span> measured<span class="kw">;</span> <span class="ex">0</span> filtered out<span class="kw">;</span> <span class="ex">finished</span> in 0.00s</span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo run</span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.00s</span></span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Running</span> <span class="kw">`</span><span class="ex">target/debug/hello-nix</span><span class="kw">`</span></span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo build</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">Compiling</span> hello-nix v0.1.0 <span class="er">(</span><span class="ex">/Users/scott/workspace/nix-first-steps/hello-nix</span><span class="kw">)</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.77s</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo test</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>   <span class="ex">Compiling</span> hello-nix v0.1.0 <span class="er">(</span><span class="ex">/Users/scott/workspace/nix-first-steps/hello-nix</span><span class="kw">)</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Finished</span> <span class="kw">`</span><span class="bu">test</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.11s</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>       <span class="ex">Running</span> unittests src/main.rs <span class="er">(</span><span class="ex">target/debug/deps/hello_nix-c7e1c6d541507f78</span><span class="kw">)</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="ex">running</span> 0 tests</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="bu">test</span> result: ok. 0 passed<span class="kw">;</span> <span class="ex">0</span> failed<span class="kw">;</span> <span class="ex">0</span> ignored<span class="kw">;</span> <span class="ex">0</span> measured<span class="kw">;</span> <span class="ex">0</span> filtered out<span class="kw">;</span> <span class="ex">finished</span> in 0.00s</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo run</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.00s</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Running</span> <span class="kw">`</span><span class="ex">target/debug/hello-nix</span><span class="kw">`</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
 <aside class="notes">
 <p>our build and tests (which don’t exist yet), all work</p>
 </aside>
@@ -988,14 +990,14 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href=
 <h1>Building with nix</h1>
 <p>Let’s make a new file, <code>default.nix</code> and put it in the
 <code>hello-nix</code> directory.</p>
-<div class="sourceCode" id="cb50"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pname</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">version</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">cargoLock</span>.<span class="va">lockFile</span> <span class="op">=</span> <span class="ss">./Cargo.lock</span><span class="op">;</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">src</span> <span class="op">=</span> pkgs<span class="op">.</span>lib<span class="op">.</span>cleanSource <span class="ss">./.</span><span class="op">;</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pname</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">version</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">cargoLock</span>.<span class="va">lockFile</span> <span class="op">=</span> <span class="ss">./Cargo.lock</span><span class="op">;</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">src</span> <span class="op">=</span> pkgs<span class="op">.</span>lib<span class="op">.</span>cleanSource <span class="ss">./.</span><span class="op">;</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Now let’s see if we can make our app as a nix package This will let
 us have a reproducible build we could share with others. There’s some
@@ -1004,11 +1006,11 @@ new syntax here, we haven’t seen yet…</p>
 </section>
 <section id="new-syntax" class="slide level1">
 <h1>New syntax: ?</h1>
-<div class="sourceCode" id="cb51"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `?` allows us to have optional values in attribute sets. This comes in handy for optional</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># arguments in functions.</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `?` allows us to have optional values in attribute sets. This comes in handy for optional</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># arguments in functions.</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo</span></code></pre></div>
 <aside class="notes">
 <p>? allows us to have optional values in an attribute set by providing
 a default. This is really handy for functions</p>
@@ -1016,32 +1018,32 @@ a default. This is really handy for functions</p>
 </section>
 <section id="new-syntax-for-nix" class="slide level1">
 <h1>New syntax for nix</h1>
-<div class="sourceCode" id="cb52"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you can either apply without that name set.</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo<span class="op">)</span> <span class="op">{}</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you can either apply without that name set.</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo<span class="op">)</span> <span class="op">{}</span></span></code></pre></div>
 <aside class="notes">
 <p>We can apply it without “foo”</p>
 </aside>
 </section>
 <section id="new-syntax-for-nix-1" class="slide level1">
 <h1>New syntax for nix</h1>
-<div class="sourceCode" id="cb53"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or with it</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo<span class="op">)</span> <span class="op">{</span> <span class="va">foo</span> <span class="op">=</span> <span class="st">&quot;bar&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or with it</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="op">({</span> <span class="va">foo</span> <span class="op">?</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>: foo<span class="op">)</span> <span class="op">{</span> <span class="va">foo</span> <span class="op">=</span> <span class="st">&quot;bar&quot;</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Or with it</p>
 </aside>
 </section>
 <section id="new-syntax-for-nix-2" class="slide level1">
 <h1>New syntax for nix</h1>
-<div class="sourceCode" id="cb54"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `import` is a special builtin function for loading code.</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># `./filename` is path variable relative by current directory.</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use this to import our new `default.nix` file</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="bu">import</span> <span class="ss">./default.nix</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `import` is a special builtin function for loading code.</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># `./filename` is path variable relative by current directory.</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use this to import our new `default.nix` file</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="bu">import</span> <span class="ss">./default.nix</span></span></code></pre></div>
 <aside class="notes">
 <p>import is a special builtin function that loads code (like other
 languages) ./filename is a new type that we haven’t seen before - it’s a
@@ -1051,13 +1053,13 @@ to pass to our import</p>
 </section>
 <section id="new-syntax-for-nix-3" class="slide level1">
 <h1>New syntax for nix</h1>
-<div class="sourceCode" id="cb55"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;nixpkgs&gt; is a special value that resolves lookup paths for $NIX_PATH</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This can be used to dynamically load whichever location nix is set to</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># That means that the argument to our function takes an attribute set with</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># an options pkgs that defaults to the imported version of `nixpkgs` if passed in.</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>: <span class="op">{}</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;nixpkgs&gt; is a special value that resolves lookup paths for $NIX_PATH</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This can be used to dynamically load whichever location nix is set to</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># That means that the argument to our function takes an attribute set with</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># an options pkgs that defaults to the imported version of `nixpkgs` if passed in.</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>: <span class="op">{}</span></span></code></pre></div>
 <aside class="notes">
 <p><nixpkgs> is a special value that resolves from the NIX_PATH
 environment variable The ? allows us to pass in our own pkgs or default
@@ -1067,14 +1069,14 @@ to the current nixpkgs default</p>
 <section id="new-syntax-for-nix-4" class="slide level1">
 <h1>New syntax for nix</h1>
 <p>back to our <code>default.nix</code></p>
-<div class="sourceCode" id="cb56"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pname</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">version</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">cargoLock</span>.<span class="va">lockFile</span> <span class="op">=</span> <span class="ss">./Cargo.lock</span><span class="op">;</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">src</span> <span class="op">=</span> pkgs<span class="op">.</span>lib<span class="op">.</span>cleanSource <span class="ss">./.</span><span class="op">;</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span> <span class="op">}</span>:</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pname</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">version</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">cargoLock</span>.<span class="va">lockFile</span> <span class="op">=</span> <span class="ss">./Cargo.lock</span><span class="op">;</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">src</span> <span class="op">=</span> pkgs<span class="op">.</span>lib<span class="op">.</span>cleanSource <span class="ss">./.</span><span class="op">;</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Back to our default.nix, we can read the rest of this We’re building
 a function that takes in an optional pkgs, then using that to call the
@@ -1086,8 +1088,8 @@ the source code in the current directory imported as ./.</p>
 <section id="building-our-package" class="slide level1">
 <h1>Building our package</h1>
 <p>We can use the <code>nix build</code> command to build</p>
-<div class="sourceCode" id="cb57"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build <span class="at">-f</span> default.nix</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build <span class="at">-f</span> default.nix</span></code></pre></div>
 <aside class="notes">
 <p>Now we can build with nix build passing the file with a -f</p>
 </aside>
@@ -1095,12 +1097,12 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href=
 <section id="building-our-package-1" class="slide level1">
 <h1>Building our package</h1>
 <p>And see the results…</p>
-<div class="sourceCode" id="cb58"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-la</span> result</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxr-xr-x</span> 1 scott staff 59 Jun 29 17:26 result <span class="at">-</span><span class="op">&gt;</span> /nix/store/rj2wf0vgsgbsadlad6nxssnb4lhqvjw1-hello-nix-0.0.1</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./result/bin/hello-nix</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm result</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-la</span> result</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxr-xr-x</span> 1 scott staff 59 Jun 29 17:26 result <span class="at">-</span><span class="op">&gt;</span> /nix/store/rj2wf0vgsgbsadlad6nxssnb4lhqvjw1-hello-nix-0.0.1</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./result/bin/hello-nix</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm result</span></code></pre></div>
 <aside class="notes">
 <p>When we build, you’ll notice that a result symlink is created that
 points to our package that was built. Note the content addressable hash,
@@ -1113,13 +1115,13 @@ done</p>
 <h1>Adding package to our flake</h1>
 <p>back up to our <code>flake.nix</code>, we provide this as the
 <code>default</code> package</p>
-<div class="sourceCode" id="cb59"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">devShell</span> = pkgs.mkShell {</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">};</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">packages.default</span> = pkgs.callPackage ./hello-nix { inherit pkgs<span class="kw">;</span> <span class="er">}</span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">devShell</span> = pkgs.mkShell {</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">};</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">packages.default</span> = pkgs.callPackage ./hello-nix { inherit pkgs<span class="kw">;</span> <span class="er">}</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Now that we have our package, we can add to our flake. In addition to
 our devshell, we’re assigning a default package and calling
@@ -1133,8 +1135,8 @@ from our flake, which we remember is set to 25.05 nixpkgs.</p>
 <section id="adding-package-to-our-flake-1" class="slide level1">
 <h1>Adding package to our flake</h1>
 <p>and rebuild it! Note the syntax again of <code>.#</code></p>
-<div class="sourceCode" id="cb60"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span></code></pre></div>
 <aside class="notes">
 <p>Now we can use nix build with our flake reference. Again we are using
 .# to tell nix build to look at packages.default</p>
@@ -1142,30 +1144,30 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href=
 </section>
 <section id="error-with-build" class="slide level1">
 <h1>Error with build</h1>
-<div class="sourceCode" id="cb61"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="ex">error:</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">…</span> while evaluating a branch condition</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">at</span> «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4<span class="pp">?</span>narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/customisation.nix:305:5:</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">304</span><span class="kw">|</span>     <span class="er">in</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">305</span><span class="kw">|</span>     <span class="cf">if</span> <span class="ex">missingArgs</span> == { } then</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>       <span class="kw">|</span>     <span class="ex">^</span></span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">306</span><span class="kw">|</span>       <span class="ex">makeOverridable</span> f allArgs</span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">…</span> while calling the <span class="st">&#39;removeAttrs&#39;</span> builtin</span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">at</span> «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4<span class="pp">?</span>narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/attrsets.nix:657:28:</span>
-<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">656</span><span class="kw">|</span>   <span class="ex">*/</span></span>
-<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">657</span><span class="kw">|</span>   <span class="ex">filterAttrs</span> = pred: set: removeAttrs set <span class="er">(</span><span class="ex">filter</span> <span class="er">(</span><span class="ex">name:</span> !pred name set.<span class="va">${name}</span><span class="kw">)</span> <span class="kw">(</span><span class="ex">attrNames</span> set<span class="kw">));</span></span>
-<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>       <span class="kw">|</span>                            <span class="ex">^</span></span>
-<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">658</span><span class="kw">|</span></span>
-<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a> <span class="kw">(</span><span class="ex">stack</span> trace truncated<span class="kw">;</span> <span class="ex">use</span> <span class="st">&#39;--show-trace&#39;</span> to show the full, detailed trace<span class="kw">)</span></span>
-<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">error:</span> Path <span class="st">&#39;hello-nix&#39;</span> in the repository <span class="st">&quot;/Users/scott/workspace/nix-first-steps&quot;</span> is not tracked by Git.</span>
-<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a> <span class="ex">To</span> make it visible to Nix, run:</span>
-<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a> <span class="fu">git</span> <span class="at">-C</span> <span class="st">&quot;/Users/scott/workspace/nix-first-steps&quot;</span> add <span class="st">&quot;hello-nix&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="ex">error:</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">…</span> while evaluating a branch condition</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">at</span> «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4<span class="pp">?</span>narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/customisation.nix:305:5:</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">304</span><span class="kw">|</span>     <span class="er">in</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">305</span><span class="kw">|</span>     <span class="cf">if</span> <span class="ex">missingArgs</span> == { } then</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>       <span class="kw">|</span>     <span class="ex">^</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">306</span><span class="kw">|</span>       <span class="ex">makeOverridable</span> f allArgs</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">…</span> while calling the <span class="st">&#39;removeAttrs&#39;</span> builtin</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">at</span> «github:nixos/nixpkgs/a676066377a2fe7457369dd37c31fd2263b662f4<span class="pp">?</span>narHash=sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58%3D»/nix/store/i56fkj8igf4wdvm6dglcj3lzi2j1r7pq-source/lib/attrsets.nix:657:28:</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">656</span><span class="kw">|</span>   <span class="ex">*/</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">657</span><span class="kw">|</span>   <span class="ex">filterAttrs</span> = pred: set: removeAttrs set <span class="er">(</span><span class="ex">filter</span> <span class="er">(</span><span class="ex">name:</span> !pred name set.<span class="va">${name}</span><span class="kw">)</span> <span class="kw">(</span><span class="ex">attrNames</span> set<span class="kw">));</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>       <span class="kw">|</span>                            <span class="ex">^</span></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">658</span><span class="kw">|</span></span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a> <span class="kw">(</span><span class="ex">stack</span> trace truncated<span class="kw">;</span> <span class="ex">use</span> <span class="st">&#39;--show-trace&#39;</span> to show the full, detailed trace<span class="kw">)</span></span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">error:</span> Path <span class="st">&#39;hello-nix&#39;</span> in the repository <span class="st">&quot;/Users/scott/workspace/nix-first-steps&quot;</span> is not tracked by Git.</span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a> <span class="ex">To</span> make it visible to Nix, run:</span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a> <span class="fu">git</span> <span class="at">-C</span> <span class="st">&quot;/Users/scott/workspace/nix-first-steps&quot;</span> add <span class="st">&quot;hello-nix&quot;</span></span></code></pre></div>
 <aside class="notes">
 <p>But we get an error! This is a common gotcha with using a flakes vs
 our file directory. If you do have a git repo, you need to git add files
@@ -1174,24 +1176,24 @@ so that the flake can access them.</p>
 </section>
 <section id="cleaning-up-git" class="slide level1">
 <h1>Cleaning up git</h1>
-<div class="sourceCode" id="cb62"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;target&quot;</span> <span class="op">&gt;&gt;</span> .gitignore</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;.direnv&quot;</span> <span class="op">&gt;&gt;</span> .gitignore</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add <span class="st">&quot;hello-nix&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;target&quot;</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&quot;.direnv&quot;</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add <span class="st">&quot;hello-nix&quot;</span></span></code></pre></div>
 <aside class="notes">
 <p>So we git add things, but we add a few git ignores first</p>
 </aside>
 </section>
 <section id="build-success" class="slide level1">
 <h1>Build success</h1>
-<div class="sourceCode" id="cb63"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> result</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxr-xr-x</span> 1 scott staff 59 Jun 29 17:45 result <span class="at">-</span><span class="op">&gt;</span> /nix/store/yqw9zry7dsgyr692y18pb330xhwlrwr5-hello-nix-0.0.1</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./result/bin/hello-nix</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm result</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> result</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxr-xr-x</span> 1 scott staff 59 Jun 29 17:45 result <span class="at">-</span><span class="op">&gt;</span> /nix/store/yqw9zry7dsgyr692y18pb330xhwlrwr5-hello-nix-0.0.1</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./result/bin/hello-nix</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm result</span></code></pre></div>
 <aside class="notes">
 <p>Now it works! Just like before, it creates a symlink to our package.
 You’ll notice the content addressable hash here is actually different
@@ -1203,11 +1205,11 @@ package</p>
 <section id="portability-of-package" class="slide level1">
 <h1>Portability of package</h1>
 <p>If we push this to github we could run this automatically!</p>
-<div class="sourceCode" id="cb64"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run github:sentientmonkey/nix-first-steps</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix .#</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run github:sentientmonkey/nix-first-steps</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix .#</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
 <aside class="notes">
 <p>If we did push our repo here to github, we could use nix run to
 invoke it directly otherwise, we can just use .# to run the default
@@ -1217,18 +1219,18 @@ package</p>
 <section id="lets-build-for-docker" class="slide level1">
 <h1>Let’s Build for Docker</h1>
 <p>Create a new file <code>hello-nix/build-docker.nix</code></p>
-<div class="sourceCode" id="cb65"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>:</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;</span><span class="sc">${</span>pkgs<span class="op">.</span>hello<span class="sc">}</span><span class="st">/bin/hello&quot;</span> <span class="op">];</span></span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">}</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>:</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> <span class="st">&quot;0.0.1&quot;</span><span class="op">;</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;</span><span class="sc">${</span>pkgs<span class="op">.</span>hello<span class="sc">}</span><span class="st">/bin/hello&quot;</span> <span class="op">];</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Now let’s try to build a docker image for our app. We make a new file
 here for another package build. This time we’re using buildImage instead
@@ -1238,11 +1240,11 @@ the “hello” package. Note the interpolation here for the package.</p>
 </section>
 <section id="building-and-loading" class="slide level1">
 <h1>Building and loading</h1>
-<div class="sourceCode" id="cb66"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>$ docker load &lt; $<span class="op">(</span>nix build <span class="op">-</span>f <span class="ss">hello-nix/build-docker.nix</span> <span class="op">--</span>no<span class="op">-</span>link <span class="op">--</span>print<span class="op">-</span>out<span class="op">-</span>paths<span class="op">)</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Loaded <span class="va">image</span><span class="op">:</span> <span class="va">hello-nix</span><span class="op">:</span><span class="dv">0</span><span class="op">.</span>0.1</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>$ docker run <span class="va">hello-nix</span><span class="op">:</span><span class="dv">0</span><span class="op">.</span>0.1</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>Hello, World<span class="op">!</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>$ docker load &lt; $<span class="op">(</span>nix build <span class="op">-</span>f <span class="ss">hello-nix/build-docker.nix</span> <span class="op">--</span>no<span class="op">-</span>link <span class="op">--</span>print<span class="op">-</span>out<span class="op">-</span>paths<span class="op">)</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>Loaded <span class="va">image</span><span class="op">:</span> <span class="va">hello-nix</span><span class="op">:</span><span class="dv">0</span><span class="op">.</span>0.1</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>$ docker run <span class="va">hello-nix</span><span class="op">:</span><span class="dv">0</span><span class="op">.</span>0.1</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>Hello, World<span class="op">!</span></span></code></pre></div>
 <aside class="notes">
 <p>We can now build and load this into docker. Note that our build is
 making an OCI image (which only will built on linux, sorry!) and we use
@@ -1254,9 +1256,9 @@ the “hello” package.</p>
 <section id="adding-dockerimage-to-our-flake" class="slide level1">
 <h1>Adding dockerImage to our flake</h1>
 <p>add to our top level <code>flake.nix</code></p>
-<div class="sourceCode" id="cb67"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>default = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>default = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Like before, we can call this package in our flake. This time we name
 it dockerImage.</p>
@@ -1264,12 +1266,12 @@ it dockerImage.</p>
 </section>
 <section id="run-docker-build-with-flake" class="slide level1">
 <h1>Run docker build with flake</h1>
-<div class="sourceCode" id="cb68"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add hello-nix/build-docker.nix</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run hello-nix:0.0.1</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello,</span> World!</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add hello-nix/build-docker.nix</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run hello-nix:0.0.1</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello,</span> World!</span></code></pre></div>
 <aside class="notes">
 <p>We remember to git add, and now we can build with .#dockerImage
 instead of the file path But this isn’t our app yet, it’s just the
@@ -1278,16 +1280,16 @@ default hello package. Let’s fix that now.</p>
 </section>
 <section id="small-refactor-in-our-flake" class="slide level1">
 <h1>Small refactor in our flake</h1>
-<div class="sourceCode" id="cb69"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">helloNix</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">};</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">default</span> <span class="op">=</span> helloNix<span class="op">;</span></span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">dockerImage</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">};</span></span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">=</span> nixpkgs<span class="op">.</span>legacyPackages<span class="op">.</span><span class="sc">${</span>system<span class="sc">}</span><span class="op">;</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">helloNix</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">};</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">default</span> <span class="op">=</span> helloNix<span class="op">;</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">dockerImage</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">};</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>First, let’s do a small refactor to make things easier. We can assign
 our hello nix build to an attribute in our let block, and then use it to
@@ -1296,8 +1298,8 @@ assign to our default image.</p>
 </section>
 <section id="small-refactor-to-our-flake" class="slide level1">
 <h1>Small refactor to our flake</h1>
-<div class="sourceCode" id="cb70"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span> <span class="va">helloNix</span><span class="op">;</span> <span class="op">}</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span> <span class="va">helloNix</span><span class="op">;</span> <span class="op">}</span>;</span></code></pre></div>
 <aside class="notes">
 <p>Now we can pass that package along to our call to our
 build-docker.nix</p>
@@ -1306,19 +1308,19 @@ build-docker.nix</p>
 <section id="back-to-our-build-we-can-use-our-package"
 class="slide level1">
 <h1>Back to our build, we can use our package</h1>
-<div class="sourceCode" id="cb71"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">helloNix</span><span class="op">,</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">},</span></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>:</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
-<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> helloNix<span class="op">.</span>version</span>
-<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>  config = <span class="op">{</span></span>
-<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;</span><span class="sc">${</span>helloNix<span class="sc">}</span><span class="st">/bin/hello-nix&quot;</span> <span class="op">];</span></span>
-<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">helloNix</span><span class="op">,</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">pkgs</span> <span class="op">?</span> <span class="bu">import</span> &lt;nixpkgs&gt; <span class="op">{</span> <span class="op">},</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>:</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> helloNix<span class="op">.</span>version</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>  config = <span class="op">{</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;</span><span class="sc">${</span>helloNix<span class="sc">}</span><span class="st">/bin/hello-nix&quot;</span> <span class="op">];</span></span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>in our build, we add helloNix to our function parameter attributes,
 use our version to set the tag and use our package for our command</p>
@@ -1326,35 +1328,35 @@ use our version to set the tag and use our package for our command</p>
 </section>
 <section id="building-again-with-our-package-now" class="slide level1">
 <h1>Building again with our package now</h1>
-<div class="sourceCode" id="cb72"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run hello-nix</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run hello-nix</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
 <aside class="notes">
 <p>Now we get our hello nix app when we load and run with docker</p>
 </aside>
 </section>
 <section id="extending-our-docker-image-with-bash" class="slide level1">
 <h1>Extending our docker image with bash</h1>
-<div class="sourceCode" id="cb73"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> helloNix<span class="op">.</span>version<span class="op">;</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">copyToRoot</span> <span class="op">=</span> pkgs<span class="op">.</span>buildEnv <span class="op">{</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;image-root&quot;</span><span class="op">;</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">paths</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>      helloNix</span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>      bashInteractive</span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>      coreutils</span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">];</span></span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">pathsToLink</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;/bin&quot;</span> <span class="op">];</span></span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;/bin/hello-nix&quot;</span> <span class="op">];</span></span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>dockerTools<span class="op">.</span>buildImage <span class="op">{</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;hello-nix&quot;</span><span class="op">;</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">tag</span> <span class="op">=</span> helloNix<span class="op">.</span>version<span class="op">;</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">copyToRoot</span> <span class="op">=</span> pkgs<span class="op">.</span>buildEnv <span class="op">{</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;image-root&quot;</span><span class="op">;</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">paths</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>      helloNix</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>      bashInteractive</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>      coreutils</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">];</span></span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">pathsToLink</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;/bin&quot;</span> <span class="op">];</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">config</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">Cmd</span> <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;/bin/hello-nix&quot;</span> <span class="op">];</span></span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Let’s make this a bit more robust. Let’s say we want to provide more
 in our container, like having an interactive bash shell and common linux
@@ -1368,11 +1370,11 @@ and everything else into bin as well.</p>
 <section id="extending-our-docker-image-with-bash-1"
 class="slide level1">
 <h1>Extending our docker image with bash</h1>
-<div class="sourceCode" id="cb74"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> /bin/bash</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bash-5.2#</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> /bin/bash</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bash-5.2#</span></span></code></pre></div>
 <aside class="notes">
 <p>Now we have an interactive bash shell if we need it, or whatever
 other packages we need at runtime.</p>
@@ -1381,17 +1383,17 @@ other packages we need at runtime.</p>
 <section id="adding-runtime-dependencies" class="slide level1">
 <h1>Adding runtime dependencies</h1>
 <p>Back to our <code>flake.nix</code></p>
-<div class="sourceCode" id="cb75"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>devShell = pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    cargo</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    rustc</span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>    rust-analyzer</span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>    rustfmt</span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    figlet</span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>    lolcat</span>
-<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">];</span></span>
-<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>devShell = pkgs<span class="op">.</span>mkShell <span class="op">{</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">buildInputs</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    cargo</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    rustc</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>    rust-analyzer</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>    rustfmt</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>    figlet</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>    lolcat</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">];</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
 <aside class="notes">
 <p>Expanding on this further, let’s assume we have additional package
 dependencies like figlet and lolcat. If you’re not familiar figlet turns
@@ -1404,16 +1406,16 @@ nix can help us here since they are defined as packages.</p>
 <section id="testing-package-dependencies-for-development"
 class="slide level1">
 <h1>Testing package dependencies for development</h1>
-<div class="sourceCode" id="cb76"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd hello-nix</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo run <span class="kw">|</span> <span class="ex">figlet</span> <span class="kw">|</span> <span class="ex">lolcat</span></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.02s</span></span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Running</span> <span class="kw">`</span><span class="ex">target/debug/hello-nix</span><span class="kw">`</span></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
-<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
-<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
-<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd hello-nix</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo run <span class="kw">|</span> <span class="ex">figlet</span> <span class="kw">|</span> <span class="ex">lolcat</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Finished</span> <span class="kw">`</span><span class="ex">dev</span><span class="kw">`</span> profile [unoptimized + debuginfo] target<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">0.02s</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Running</span> <span class="kw">`</span><span class="ex">target/debug/hello-nix</span><span class="kw">`</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
 <aside class="notes">
 <p>Once we direnv allow and our flake rebuilds, we can use these and we
 get a more fun output. When we’re happy with testing this, we can move
@@ -1422,19 +1424,19 @@ to updating our rust program to run them all together by default.</p>
 </section>
 <section id="using-makewrapper" class="slide level1">
 <h1>Using makeWrapper</h1>
-<div class="sourceCode" id="cb77"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">nativeBuildInputs</span> <span class="op">=</span> <span class="op">[</span> pkgs<span class="op">.</span>makeWrapper <span class="op">];</span></span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">postInstall</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
-<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="st">    wrapProgram $out/bin/hello-nix \</span></span>
-<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="st">      --prefix PATH : </span><span class="sc">${</span>pkgs<span class="op">.</span>lolcat<span class="sc">}</span><span class="st">/bin \</span></span>
-<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="st">      --prefix PATH : </span><span class="sc">${</span>pkgs<span class="op">.</span>figlet<span class="sc">}</span><span class="st">/bin \</span></span>
-<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a><span class="st">      --add-flags &quot;| figlet | lolcat&quot;</span></span>
-<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;&#39;</span><span class="op">;</span></span>
-<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">nativeBuildInputs</span> <span class="op">=</span> <span class="op">[</span> pkgs<span class="op">.</span>makeWrapper <span class="op">];</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">postInstall</span> <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="st">    wrapProgram $out/bin/hello-nix \</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="st">      --prefix PATH : </span><span class="sc">${</span>pkgs<span class="op">.</span>lolcat<span class="sc">}</span><span class="st">/bin \</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="st">      --prefix PATH : </span><span class="sc">${</span>pkgs<span class="op">.</span>figlet<span class="sc">}</span><span class="st">/bin \</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a><span class="st">      --add-flags &quot;| figlet | lolcat&quot;</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;&#39;</span><span class="op">;</span></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>We can use a nix builtin package called makeWrapper to help us This
 package has a set of bash functions, including wrapProgram which allows
@@ -1447,23 +1449,23 @@ are just shown here.</p>
 </section>
 <section id="using-makewrapper-1" class="slide level1">
 <h1>Using makeWrapper</h1>
-<div class="sourceCode" id="cb78"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat result/bin/hello-nix</span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co">#! /nix/store/xy4jjgw87sbgwylm5kn047d9gkbhsr9x-bash-5.2p37/bin/bash -e</span></span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">:+</span><span class="st">&#39;:&#39;</span><span class="va">$PATH</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">/</span><span class="st">&#39;:&#39;&#39;/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin&#39;&#39;:&#39;</span><span class="op">/</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="st">&#39;/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin&#39;</span><span class="va">$PATH</span></span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">#</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">%</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span></span>
-<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">:+</span><span class="st">&#39;:&#39;</span><span class="va">$PATH</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">/</span><span class="st">&#39;:&#39;&#39;/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin&#39;&#39;:&#39;</span><span class="op">/</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="st">&#39;/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin&#39;</span><span class="va">$PATH</span></span>
-<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">#</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">%</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
-<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span></span>
-<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span> <span class="st">&quot;/nix/store/jpfbhrzd6wpm607w1llyl52bs3dm074w-hello-nix-0.0.1/bin/.hello-nix-unwrapped&quot;</span>  <span class="kw">|</span> <span class="ex">figlet</span> <span class="kw">|</span> <span class="ex">lolcat</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat result/bin/hello-nix</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co">#! /nix/store/xy4jjgw87sbgwylm5kn047d9gkbhsr9x-bash-5.2p37/bin/bash -e</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">:+</span><span class="st">&#39;:&#39;</span><span class="va">$PATH</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">/</span><span class="st">&#39;:&#39;&#39;/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin&#39;&#39;:&#39;</span><span class="op">/</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="st">&#39;/nix/store/jjf7ym331wzp1jsyn05b7cscflk291bd-lolcat-100.0.1/bin&#39;</span><span class="va">$PATH</span></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">#</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">%</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">:+</span><span class="st">&#39;:&#39;</span><span class="va">$PATH</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">/</span><span class="st">&#39;:&#39;&#39;/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin&#39;&#39;:&#39;</span><span class="op">/</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="st">&#39;/nix/store/q00xb5g6hv24yc7r6k3r6jws226vw8rm-figlet-2.2.5/bin&#39;</span><span class="va">$PATH</span></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">#</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="va">PATH</span><span class="op">=</span><span class="va">${PATH</span><span class="op">%</span><span class="st">&#39;:&#39;</span><span class="va">}</span></span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span></span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span> <span class="st">&quot;/nix/store/jpfbhrzd6wpm607w1llyl52bs3dm074w-hello-nix-0.0.1/bin/.hello-nix-unwrapped&quot;</span>  <span class="kw">|</span> <span class="ex">figlet</span> <span class="kw">|</span> <span class="ex">lolcat</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span></code></pre></div>
 <aside class="notes">
 <p>If we build our app, we can see the bash it generates. Note that it’s
 using everything from the nix store, even bash!</p>
@@ -1471,13 +1473,13 @@ using everything from the nix store, even bash!</p>
 </section>
 <section id="running-our-build" class="slide level1">
 <h1>Running our build</h1>
-<div class="sourceCode" id="cb79"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run .#</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run .#</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
 <aside class="notes">
 <p>Running our package now from our flake gives us the formatted
 hello</p>
@@ -1485,15 +1487,15 @@ hello</p>
 </section>
 <section id="running-from-docker" class="slide level1">
 <h1>Running from docker</h1>
-<div class="sourceCode" id="cb80"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> hello-nix:0.0.1</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker load <span class="op">&lt;</span> <span class="va">$(</span><span class="ex">nix</span> build .#dockerImage <span class="at">--no-link</span> <span class="at">--print-out-paths</span><span class="va">)</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loaded</span> image: hello-nix:0.0.1</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> hello-nix:0.0.1</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">_</span>   _      _ _          __                             _      _</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span><span class="kw">|</span> <span class="kw">|</span> <span class="kw">|</span> <span class="ex">___</span>    / _<span class="kw">|</span><span class="ex">_</span> __ ___  _ __ ___    _ __ <span class="er">(</span><span class="ex">_</span><span class="kw">)</span><span class="ex">_</span>  _<span class="kw">|</span> <span class="kw">|</span></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> _ <span class="dt">\ </span> <span class="kw">|</span> <span class="kw">|</span><span class="ex">_</span><span class="kw">|</span> <span class="st">&#39;__/ _ \| &#39;</span><span class="ex">_</span> <span class="kw">`</span> <span class="ex">_</span> <span class="dt">\ </span> <span class="kw">|</span> <span class="st">&#39;_ \| \ \/ / |</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="st">|  _  |  __/ | | (_) | |  _| | | (_) | | | | | | | | | | |&gt;  &lt;|_|</span></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="st">|_| |_|\___|_|_|\___/  |_| |_|  \___/|_| |_| |_| |_| |_|_/_/\_(_)</span></span></code></pre></div>
 <aside class="notes">
 <p>And this automatically works in docker without any changes to our
 docker build because we rely on our package build</p>
@@ -1501,9 +1503,9 @@ docker build because we rely on our package build</p>
 </section>
 <section id="running-the-unwrapped-version" class="slide level1">
 <h1>Running the unwrapped version</h1>
-<div class="sourceCode" id="cb81"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> hello-nix:0.0.1 /bin/.hello-nix-wrapped</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">-it</span> hello-nix:0.0.1 /bin/.hello-nix-wrapped</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
 <aside class="notes">
 <p>The unwrapped version is still there if we ever need it And that’s it
 - a single environment that lets to develop, build, and distribute your

@@ -289,12 +289,16 @@ what this all means soon. Let's go learn some of the language.
 $ nix repl
 Nix 2.29.0
 Type :? for help.
-nix-repl>
+nix-repl> 1 + 2
+3
 ```
 
 ```bash
 $ nix eval --expr '1+2'
 3
+```
+
+```bash
 $ echo "1+2" >> math.nix
 $ nix eval -f math.nix
 3

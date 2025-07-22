@@ -1,6 +1,6 @@
 code_style := "tokyo-night-storm.theme"
 
-pdf: revealjs
+pdf: build
   ./node_modules/puppeteer-cli/index.js print index.html slides.pdf \
     --print-background \
     --landscape \
@@ -16,7 +16,7 @@ images:
     img/nix-snowflake-rainbow.svg \
     img/nix-snowflake-rainbow.png
 
-revealjs:
+build:
   pandoc -t revealjs -s -o index.html slides.md \
     -V revealjs-url=https://unpkg.com/reveal.js \
     --include-in-header=header.html \
@@ -25,11 +25,11 @@ revealjs:
   echo "Slides generated at index.html"
 
 watch:
-  just revealjs && \
+  just build && \
   fswatch -o slides.md header.html img/*.svg \
-    | xargs -I{}  just revealjs
+    | xargs -I{}  just build
 
-serve: revealjs
+serve: build
   http-server -p 8000
 
 clean:
