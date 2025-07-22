@@ -292,6 +292,13 @@ Type :? for help.
 nix-repl>
 ```
 
+```bash
+$ nix eval --expr '1+2'
+3
+$ echo "1+2" >> math.nix
+$ nix eval -f math.nix
+3
+```
 ::: notes
 Let's go over the nix language enough so we can understand that flake.nix code
 If you'd like, you can follow along by launching the nix repl.
