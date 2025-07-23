@@ -355,7 +355,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <section id="creating-a-flake" class="slide level1">
 <h1>Creating a flake</h1>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir <span class="at">-p</span> ~/workspace/nix-firs-steps</span>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir <span class="at">-p</span> ~/workspace/nix-first-steps</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/workspace/nix-first-steps</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git init</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix flake init templates#utils-generic</span></code></pre></div>
@@ -904,7 +904,7 @@ to be the default. Same for the reference .# is the same as
 profile via nix.</p>
 <div class="sourceCode" id="cb45"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix profile install nixpkgs#direnv</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&#39;eval &quot;$(direnv hook zsh)&quot;&#39;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">&#39;eval &quot;$(direnv hook bash)&quot;&#39;</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source ~/.bashrc</span></code></pre></div>
 <aside class="notes">
 <p>Let’s make this easier with direnv. If you don’t already have direnv
@@ -1208,7 +1208,7 @@ package</p>
 <div class="sourceCode" id="cb65"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run github:sentientmonkey/nix-first-steps</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix .#</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix run .#</span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> from nix!</span></code></pre></div>
 <aside class="notes">
 <p>If we did push our repo here to github, we could use nix run to

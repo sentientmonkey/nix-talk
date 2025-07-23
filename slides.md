@@ -230,7 +230,7 @@ The package is still built (until garbage collected), but no longer in your shel
 # Creating a flake
 
 ```bash
-$ mkdir -p ~/workspace/nix-firs-steps
+$ mkdir -p ~/workspace/nix-first-steps
 $ cd ~/workspace/nix-first-steps
 $ git init
 $ nix flake init templates#utils-generic
@@ -844,7 +844,7 @@ If you don't already have direnv installed, you can install to your profile via 
 
 ```bash
 $ nix profile install nixpkgs#direnv
-$ echo 'eval "$(direnv hook zsh)"' >> ~/.bashrc
+$ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 $ source ~/.bashrc
 ```
 ::: notes
@@ -1185,7 +1185,7 @@ If we push this to github we could run this automatically!
 ```bash
 $ nix run github:sentientmonkey/nix-first-steps
 Hello from nix!
-$ nix .#
+$ nix run .#
 Hello from nix!
 ```
 ::: notes
