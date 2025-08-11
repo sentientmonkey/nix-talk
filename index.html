@@ -99,10 +99,11 @@
   <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/moon.css" id="theme">
   <style>
   .slides {
-    font-size: medium;
-    h2 {
+    font-size: x-large;
+  }
+
+  .left {
       text-align: left;
-    }
   }
   .reveal ul {
       display: block;
@@ -113,7 +114,7 @@
   }
   .reveal code.sourceCode {
       background-color: #24283b;
-      font-size: medium;
+      font-size: x-large;
       overflow: auto;
       text-wrap: wrap;
   }
@@ -148,22 +149,21 @@
 
 <section class="slide level1">
 
-<h2 id="goals">Goals</h2>
+<h2 class="left" id="identifier">Goals</h2>
 <ul>
 <li>Beginner-friendly intro to nix</li>
 <li>Introduce concepts and language</li>
 <li>Get you excited about nix!</li>
 </ul>
-<h2 id="expectations">Expectations</h2>
+<h2 class="left" id="identifier">Expectations</h2>
 <ul>
 <li>Familiarity with command line &amp; shell</li>
 <li>Understand at least one programming language like
 <code>javascript</code></li>
 </ul>
 </section>
-<section class="slide level1">
-
-<h2 id="background">Background</h2>
+<section id="background" class="slide level1">
+<h1>Background</h1>
 <ul>
 <li>Been a developer for &gt; 20 years</li>
 <li>Dealt with countless build/run dependency issues</li>
@@ -177,9 +177,10 @@ app. I learned quickly how hard portability really is, and that’s been a
 theme in my career.</p>
 </aside>
 </section>
-<section id="the-quest-for-reproducible-development-environments"
-class="slide level1">
-<h1>The Quest for Reproducible Development Environments</h1>
+<section class="slide level1">
+
+<h2 id="the-quest-for-reproducible-development-environments">The Quest
+for Reproducible Development Environments</h2>
 <ul>
 <li>automake (and porting)</li>
 <li>ports / macports</li>
@@ -237,8 +238,9 @@ work together. We’re using determinate nix here, which is a distribution
 of nix that makes it easier to use.</p>
 </aside>
 </section>
-<section id="creating-shell-with-curl" class="slide level1">
-<h1>Creating shell with curl</h1>
+<section class="slide level1">
+
+<h2 id="creating-shell-with-curl">Creating shell with curl</h2>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix-shell <span class="at">-p</span> curl</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">these</span> 9 paths will be fetched <span class="er">(</span><span class="ex">0.99</span> MiB download, 4.14 MiB unpacked<span class="kw">)</span><span class="bu">:</span></span>
@@ -267,8 +269,9 @@ content-addressable and versioned. Also note that means they be
 downloaded.</p>
 </aside>
 </section>
-<section id="creating-shell-with-curl-1" class="slide level1">
-<h1>Creating shell with curl</h1>
+<section class="slide level1">
+
+<h2 id="creating-shell-with-curl-1">Creating shell with curl</h2>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[nix-shell:~/workspace/nix-talk]$</span> curl <span class="at">--version</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> 8.14.1 <span class="er">(</span><span class="ex">x86_64-pc-linux-gnu</span><span class="kw">)</span> <span class="ex">libcurl/8.14.1</span> OpenSSL/3.4.1 zlib/1.3.1 brotli/1.1.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.5 libssh2/1.11.1 nghttp2/1.65.0</span>
@@ -283,8 +286,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 also see where this version is built in the store.</p>
 </aside>
 </section>
-<section id="showing-runtime-dependencies-linux" class="slide level1">
-<h1>Showing runtime dependencies (Linux)</h1>
+<section class="slide level1">
+
+<h2 id="showing-runtime-dependencies-linux">Showing runtime dependencies
+(Linux)</h2>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[nix-shell:~/workspace/nix-talk]$</span> ldd <span class="va">$(</span><span class="fu">which</span> curl<span class="va">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">linux-vdso.so.1</span> <span class="er">(</span><span class="ex">0x00007f0e95cfa000</span><span class="kw">)</span></span>
@@ -316,8 +321,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="
 <p>Even better, we can use ldd to see what shared objects curl uses</p>
 </aside>
 </section>
-<section id="showing-runtime-dependencies-macos" class="slide level1">
-<h1>Showing runtime dependencies (macOS)</h1>
+<section class="slide level1">
+
+<h2 id="showing-runtime-dependencies-macos">Showing runtime dependencies
+(macOS)</h2>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[nix-shell:~]$</span> otool <span class="at">-L</span> <span class="va">$(</span><span class="fu">which</span> curl<span class="va">)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/nix/store/bblr8ccnd4baxm4cf7g1igfz6ya8v93m-curl-8.14.1-bin/bin/curl:</span></span>
@@ -912,8 +919,9 @@ installed, you can use nix profile install to install it to your profile
 for your user.</p>
 </aside>
 </section>
-<section id="direnv-makes-this-better-1" class="slide level1">
-<h1>direnv makes this better</h1>
+<section class="slide level1">
+
+<h2 id="direnv-makes-this-better-1">direnv makes this better</h2>
 <p>Now the flake is evaluated when we enter the directory</p>
 <div class="sourceCode" id="cb46"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> direnv allow</span>
@@ -961,8 +969,9 @@ class="sourceCode rust"><code class="sourceCode rust"><span id="cb49-1"><a href=
 know rust, that’s okay.</p>
 </aside>
 </section>
-<section id="building-our-app-2" class="slide level1">
-<h1>Building our app</h1>
+<section class="slide level1">
+
+<h2 id="building-our-app-2">Building our app</h2>
 <p>We can make sure this builds, tests, and runs.</p>
 <div class="sourceCode" id="cb50"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cargo build</span>
@@ -1142,8 +1151,9 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href=
 .# to tell nix build to look at packages.default</p>
 </aside>
 </section>
-<section id="error-with-build" class="slide level1">
-<h1>Error with build</h1>
+<section class="slide level1">
+
+<h2 id="error-with-build">Error with build</h2>
 <div class="sourceCode" id="cb62"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> Git tree <span class="st">&#39;/Users/scott/workspace/nix-first-steps&#39;</span> has uncommitted changes</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="ex">error:</span></span>
@@ -1258,7 +1268,9 @@ the “hello” package.</p>
 <p>add to our top level <code>flake.nix</code></p>
 <div class="sourceCode" id="cb68"><pre
 class="sourceCode nix"><code class="sourceCode nix"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>default = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>Like before, we can call this package in our flake. This time we name
 it dockerImage.</p>
@@ -1288,8 +1300,10 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb70-1"><a href="#
 <span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
 <span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">default</span> <span class="op">=</span> helloNix<span class="op">;</span></span>
-<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">dockerImage</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> <span class="op">};</span></span>
-<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">packages</span>.<span class="va">dockerImage</span> <span class="op">=</span> pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">inherit</span> <span class="va">pkgs</span><span class="op">;</span> </span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <aside class="notes">
 <p>First, let’s do a small refactor to make things easier. We can assign
 our hello nix build to an attribute in our let block, and then use it to
@@ -1299,7 +1313,9 @@ assign to our default image.</p>
 <section id="small-refactor-to-our-flake" class="slide level1">
 <h1>Small refactor to our flake</h1>
 <div class="sourceCode" id="cb71"><pre
-class="sourceCode nix"><code class="sourceCode nix"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span> <span class="kw">inherit</span> <span class="va">pkgs</span> <span class="va">helloNix</span><span class="op">;</span> <span class="op">}</span>;</span></code></pre></div>
+class="sourceCode nix"><code class="sourceCode nix"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>packages<span class="op">.</span>dockerImage = pkgs<span class="op">.</span>callPackage <span class="ss">./hello-nix/build-docker.nix</span> <span class="op">{</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">inherit</span> <span class="va">pkgs</span> <span class="va">helloNix</span><span class="op">;</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
 <aside class="notes">
 <p>Now we can pass that package along to our call to our
 build-docker.nix</p>
@@ -1422,8 +1438,9 @@ get a more fun output. When we’re happy with testing this, we can move
 to updating our rust program to run them all together by default.</p>
 </aside>
 </section>
-<section id="using-makewrapper" class="slide level1">
-<h1>Using makeWrapper</h1>
+<section class="slide level1">
+
+<h2 id="using-makewrapper">Using makeWrapper</h2>
 <div class="sourceCode" id="cb78"><pre
 class="sourceCode nix"><code class="sourceCode nix"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pkgs<span class="op">.</span>rustPlatform<span class="op">.</span>buildRustPackage <span class="op">{</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
@@ -1447,8 +1464,9 @@ hello-world with these arguments. There are more options available that
 are just shown here.</p>
 </aside>
 </section>
-<section id="using-makewrapper-1" class="slide level1">
-<h1>Using makeWrapper</h1>
+<section class="slide level1">
+
+<h2 id="using-makewrapper-1">Using makeWrapper</h2>
 <div class="sourceCode" id="cb79"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nix build .#</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat result/bin/hello-nix</span>

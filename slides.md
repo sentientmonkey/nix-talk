@@ -22,19 +22,17 @@ section-titles: false
 toc: false
 ---
 
-## Goals
+## Goals {#identifier .left}
 - Beginner-friendly intro to nix
 - Introduce concepts and language
 - Get you excited about nix!
 
 
-## Expectations
+## Expectations {#identifier .left}
 - Familiarity with command line & shell
 - Understand at least one programming language like `javascript`
 
----
-
-## Background
+# Background
 
 * Been a developer for > 20 years
 * Dealt with countless build/run dependency issues
@@ -47,7 +45,9 @@ One of my first programming jobs involved maintaining a solaris port of a window
 I learned quickly how hard portability really is, and that's been a theme in my career.
 :::
 
-# The Quest for Reproducible Development Environments
+---
+
+## The Quest for Reproducible Development Environments
 
 * automake (and porting)
 * ports / macports
@@ -102,8 +102,9 @@ The goal is to learn how these things work together.
 We're using determinate nix here, which is a distribution of nix that makes it easier to use.
 :::
 
+---
  
-# Creating shell with curl
+## Creating shell with curl
  
 ```bash
 $ nix-shell -p curl
@@ -134,7 +135,9 @@ Note the dependencies required and they they are content-addressable and version
 Also note that means they be downloaded.
 :::
 
-# Creating shell with curl
+---
+
+## Creating shell with curl
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ curl --version
@@ -152,7 +155,9 @@ We can see that it works for us and what features are enabled.
 We can also see where this version is built in the store.
 :::
 
-# Showing runtime dependencies (Linux)
+---
+
+## Showing runtime dependencies (Linux)
 
 ```bash
 [nix-shell:~/workspace/nix-talk]$ ldd $(which curl)
@@ -187,7 +192,9 @@ We can also see where this version is built in the store.
 Even better, we can use ldd to see what shared objects curl uses
 :::
 
-# Showing runtime dependencies (macOS)
+---
+
+## Showing runtime dependencies (macOS)
 
 ```bash
 [nix-shell:~]$ otool -L $(which curl)
@@ -852,8 +859,9 @@ Let's make this easier with direnv. If you don't already have direnv installed, 
 can use nix profile install to install it to your profile for your user.
 :::
 
+---
 
-# direnv makes this better
+## direnv makes this better
 
 Now the flake is evaluated when we enter the directory
 
@@ -910,7 +918,9 @@ This is a pretty simple rust app for our demo purposes.
 If you don't know rust, that's okay.
 :::
 
-# Building our app
+---
+
+## Building our app
 
 We can make sure this builds, tests, and runs.
 
@@ -1113,7 +1123,9 @@ Now we can use nix build with our flake reference. Again we are using .# to tell
 at packages.default
 :::
 
-# Error with build
+---
+
+## Error with build
 
 ```bash
 warning: Git tree '/Users/scott/workspace/nix-first-steps' has uncommitted changes
@@ -1239,7 +1251,9 @@ Running it gives the default for the "hello" package.
 add to our top level `flake.nix`
 ```nix
 packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; }
-packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs; }
+packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix {
+  inherit pkgs;
+}
 ```
 
 ::: notes
@@ -1270,7 +1284,9 @@ in
 {
   # ...
   packages.default = helloNix;
-  packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs; };
+  packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix {
+    inherit pkgs; 
+  };
 }
 ```
 ::: notes
@@ -1282,7 +1298,9 @@ and then use it to assign to our default image.
 # Small refactor to our flake
 
 ```nix
-packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix { inherit pkgs helloNix; };
+packages.dockerImage = pkgs.callPackage ./hello-nix/build-docker.nix {
+  inherit pkgs helloNix;
+};
 ```
 
 ::: notes
@@ -1409,7 +1427,9 @@ When we're happy with testing this, we can move to updating our rust program to 
 all together by default.
 :::
 
-# Using makeWrapper
+---
+
+## Using makeWrapper
 
 ```nix
 pkgs.rustPlatform.buildRustPackage {
@@ -1434,7 +1454,9 @@ We use | figlet | lolcat to always run hello-world with these arguments.
 There are more options available that are just shown here.
 :::
 
-# Using makeWrapper
+---
+
+## Using makeWrapper
 
 ```bash
 $ nix build .#
