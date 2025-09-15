@@ -593,7 +593,7 @@ level directory, we can add this to our flake.
         devShell = pkgs.mkShell {
          # ...
         };
-        packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; }
+        packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; };
       }
 ```
 
