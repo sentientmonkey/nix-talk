@@ -204,10 +204,10 @@ Now that you have nix itself installed, let's make a development environment. Cr
 directory to work out of (mine is `~/workspace/nix-first-steps`) and lets set up this as a repo.
 
 ```bash
-$ mkdir -p ~/workspace/nix-firs-steps
+$ mkdir -p ~/workspace/nix-first-steps
 $ cd ~/workspace/nix-first-steps
 $ git init
-$ nix flake init templates#utils-generic
+$ nix flake init -t templates#utils-generic
 ```
 
 You'll notice this makes a new file named `flake.nix`.
