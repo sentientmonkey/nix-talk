@@ -381,7 +381,7 @@ in
 ```
 
 Now that we understand the _syntax_ of the nix (and the flake), we need to understand some of the
-conventions so we can know what we want to change. A flake is an nix expression that returns an
+conventions so we can know what we want to change. A flake is a nix expression that returns an
 attribute set with a number of fixed attributes.
 
 
@@ -593,7 +593,7 @@ level directory, we can add this to our flake.
         devShell = pkgs.mkShell {
          # ...
         };
-        packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; }
+        packages.default = pkgs.callPackage ./hello-nix { inherit pkgs; };
       }
 ```
 
@@ -604,6 +604,7 @@ path here since nix will look for a `default.nix` for a directory.
 We can now build our package from our flake with
 
 ```bash
+$ cd ..
 $ nix build .#
 ```
 
@@ -646,6 +647,7 @@ git. Doing so will fix our build. We do also want add a few things to our `.giti
 $ echo "target" >> .gitignore
 $ echo ".direnv" >> .gitignore
 $ git add "hello-nix"
+$ git add flake.nix
 ```
 
 Now our build should work. Similar to before, we have a result symlink.
@@ -701,13 +703,13 @@ pkgs.dockerTools.buildImage {
 }
 ```
 
-This is is a basic docker file that runs a the `hello` package. We can build this to test it out,
+This is is a basic docker file that runs the `hello` package. We can build this to test it out,
 and then use it to load and run in docker.
 
 ```bash
 $ docker load < $(nix build -f hello-nix/build-docker.nix --no-link --print-out-paths)
-Loaded image: hello-nix:0.0.1
-$ docker run hello-nix:0.0.1
+Loaded image: hello-nix:latest
+$ docker run hello-nix:latest
 Hello from nix!
 ```
 
