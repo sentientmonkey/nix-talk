@@ -360,9 +360,7 @@ in
     pkgs = nixpkgs.legacyPackages.${system};
   in
   pkgs
-)
-  "linux"
-  { nixpkgs.legacyPackages.linux = "awesome"; }
+) "linux" { nixpkgs.legacyPackages.linux = "awesome"; }
 
 # We have one last thing to learn before we understand all of our flake!
 # You can do it!
