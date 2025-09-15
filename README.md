@@ -452,9 +452,11 @@ If you already have direnv installed, great - you'll notice that you would have 
 awhile ago. If you haven't, we can use nix to install it for your `profile`. This is installing
 the package for your user rather than just for this repository.
 
+Note if you are using `zsh` or other another shell, you'll want to change the eval line below.
+
 ```bash
 $ nix profile install nixpkgs#direnv
-$ echo 'eval "$(direnv hook zsh)"' >> ~/.bashrc
+$ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
